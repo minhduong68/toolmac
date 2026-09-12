@@ -1,0 +1,76 @@
+{
+  "name": "alex-bright-tool",
+  "productName": "ALEX BRIGHT TOOL",
+  "version": "2.5.0",
+  "description": "Tạo video ALEX BRIGHT TOOL nhiều tài khoản song song, độ dài tuỳ chọn, chạy trên máy của bạn",
+  "author": {
+    "name": "ALEX BRIGHT TOOL",
+    "email": "support@anony88888",
+    "telegram": "@anony88888"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "dist/main.js",
+  "dependencies": {
+    "electron-updater": "^6.6.2",
+    "node-machine-id": "^1.1.12",
+    "playwright": "1.62.0"
+  },
+  "desktopName": "alex-bright-tool.desktop",
+  "homepage": "https://t.me/anony88888",
+  "trialBuild": false,
+  "scripts": {
+    "start": "electron .",
+    "setup:mac": "npx playwright install chromium",
+    "build:mac": "electron-builder --mac",
+    "build:mac:arm64": "electron-builder --mac --arm64",
+    "build:mac:x64": "electron-builder --mac --x64",
+    "build:mac:universal": "electron-builder --mac --universal"
+  },
+  "build": {
+    "appId": "com.alexbright.seedancepro",
+    "productName": "Tool Seedance Pro",
+    "mac": {
+      "category": "public.app-category.video",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "icon": "dist/renderer/assets/icon.png",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "electron": "^28.2.0",
+    "electron-builder": "^24.13.3"
+  }
+}

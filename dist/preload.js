@@ -1,0 +1,1 @@
+"use strict";var s=require("electron"),r=o=>{let t=process.argv.find(e=>e.startsWith(`--${o}=`));return t?t.slice(o.length+3):""};s.contextBridge.exposeInMainWorld("dolaStudio",{token:r("dola-token"),version:r("dola-version"),platform:process.platform});

@@ -1,0 +1,7 @@
+node_modules/
+dist/*.dmg
+dist/*.zip
+dist/mac/
+dist/mac-arm64/
+*.log
+.DS_Store

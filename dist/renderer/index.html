@@ -1,0 +1,2758 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ALEX BRIGHT TOOL</title>
+<script>
+// Áp chủ đề ngay trước khi vẽ để không loé sáng/tối. Giá trị thật đến từ Cài đặt sau.
+try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/assets/app.css">
+<style>
+/* ==================== ALEX BRIGHT TOOL - MODERN ACTIVATION UI ==================== */
+#licbox.overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(13, 22, 40, 0.96) 0%, rgba(4, 7, 15, 0.98) 100%) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999 !important;
+  padding: 20px;
+}
+
+#licbox.overlay[hidden] {
+  display: none !important;
+}
+
+.lic-card {
+  width: min(960px, 96vw);
+  max-height: 94vh;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  background: #0b101d;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.95), 0 0 50px rgba(56, 189, 248, 0.12);
+  animation: licModalPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes licModalPop {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Left Hero Showcase */
+.lic-hero {
+  background: linear-gradient(160deg, #111a2e 0%, #0a0f1c 100%);
+  padding: 38px 34px;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.lic-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.lic-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.lic-brand-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
+}
+
+.lic-brand-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, #ffffff 30%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.lic-brand-tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-top: 5px;
+  text-transform: uppercase;
+}
+
+.lic-hero-desc {
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+}
+
+.lic-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.lic-feat-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 11px 13px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.lic-feat-item:hover {
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+.lic-feat-ico {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.lic-feat-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 2px;
+}
+
+.lic-feat-sub {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.lic-hero-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #475569;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.lic-hero-foot span.dot {
+  opacity: 0.5;
+}
+
+/* Right Panel: Activation & Actions */
+.lic-panel {
+  padding: 38px 34px;
+  background: #0c121e;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.lic-badge-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.lic-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.lic-status-dot {
+  width: 7px;
+  height: 7px;
+  background: #fbbf24;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #fbbf24;
+}
+
+.lic-heading {
+  font-size: 21px;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.3px;
+}
+
+.lic-subtext {
+  font-size: 12.5px;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+}
+
+/* Contact Cards (Telegram & Email) */
+.lic-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.lic-contact-card {
+  background: #080d16;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+
+.lic-contact-card:hover {
+  border-color: #38bdf8;
+  background: #0b1322;
+  transform: translateY(-1px);
+}
+
+.lic-contact-card.mail-card:hover {
+  border-color: #818cf8;
+}
+
+.lic-contact-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.lic-contact-ico {
+  font-size: 14px;
+}
+
+.lic-contact-badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lic-contact-val {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #38bdf8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lic-contact-card.mail-card .lic-contact-val {
+  color: #a5b4fc;
+}
+
+.lic-contact-btn {
+  margin-top: 8px;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  color: #cbd5e1;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.lic-contact-btn:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+}
+
+/* HWID Section */
+.lic-hwid-box {
+  margin-bottom: 16px;
+  background: #080d16;
+  border: 1.5px solid #1e293b;
+  border-radius: 14px;
+  padding: 13px 13px 11px;
+}
+
+.lic-hwid-lbl-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.lic-hwid-lbl {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.lic-hwid-hint {
+  font-size: 10px;
+  color: #64748b;
+}
+
+.lic-hwid-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.lic-hwid-input {
+  flex: 1 !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  background: #030712 !important;
+  border: 1px solid #24344d !important;
+  color: #38bdf8 !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  padding: 9px 12px !important;
+  border-radius: 8px !important;
+  outline: none !important;
+  cursor: text;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.lic-hwid-input:focus {
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+}
+
+.lic-btn-copy-hwid {
+  flex-shrink: 0 !important;
+  width: auto !important;
+  padding: 0 16px !important;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap !important;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);
+}
+
+.lic-btn-copy-hwid:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #075985 100%) !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.5);
+  transform: translateY(-1px);
+}
+
+.lic-btn-copy-hwid.copied {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  border-color: #34d399 !important;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.4) !important;
+}
+
+/* Primary Verify Button */
+.lic-btn-verify {
+  width: 100% !important;
+  padding: 13px 18px !important;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  border: 1px solid rgba(52, 211, 153, 0.3) !important;
+  border-radius: 10px !important;
+  color: #ffffff !important;
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+  margin-top: 4px;
+}
+
+.lic-btn-verify:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  box-shadow: 0 6px 22px rgba(16, 185, 129, 0.5);
+  transform: translateY(-1px);
+}
+
+.lic-btn-verify:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Error / Notice Display */
+.lic-err-box {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 8px;
+  color: #f87171;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  display: none;
+}
+
+.lic-err-box.visible {
+  display: block;
+  animation: licFadeIn 0.2s ease;
+}
+
+@keyframes licFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tabs Navigation in Lock Modal */
+.lic-tabs-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  background: rgba(4, 8, 18, 0.8);
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  margin-bottom: 16px;
+}
+
+.lic-tab-btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.lic-tab-btn:hover {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.lic-tab-btn.active {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.35), rgba(99, 102, 241, 0.35));
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #38bdf8;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+/* Request Form Controls */
+.lic-form-group {
+  margin-bottom: 11px;
+}
+
+.lic-form-lbl {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.lic-input, .lic-select, .lic-textarea {
+  width: 100% !important;
+  background: #060b14 !important;
+  border: 1px solid #1e293b !important;
+  border-radius: 8px !important;
+  color: #f8fafc !important;
+  font-size: 12px !important;
+  padding: 8px 12px !important;
+  outline: none !important;
+  transition: all 0.2s;
+}
+
+.lic-input:focus, .lic-select:focus, .lic-textarea:focus {
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25) !important;
+}
+
+.lic-textarea {
+  resize: vertical;
+  min-height: 48px;
+}
+
+/* Bill Upload Dropzone */
+.lic-bill-dropzone {
+  border: 1.5px dashed #334155;
+  background: rgba(6, 11, 20, 0.7);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.lic-bill-dropzone:hover, .lic-bill-dropzone.dragover {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.05);
+}
+
+.lic-bill-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #94a3b8;
+  font-size: 11.5px;
+}
+
+.lic-bill-placeholder b {
+  color: #38bdf8;
+}
+
+.lic-bill-preview-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #0b1322;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+.lic-bill-preview-box img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #334155;
+}
+
+.lic-bill-overlay {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lic-bill-overlay span {
+  font-size: 11.5px;
+  color: #e2e8f0;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lic-bill-remove {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.lic-bill-remove:hover {
+  background: #ef4444;
+  color: #fff;
+}
+
+/* Submit Request Button */
+.lic-btn-submit-req {
+  width: 100% !important;
+  padding: 11px 16px !important;
+  background: linear-gradient(135deg, #0284c7 0%, #6366f1 100%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.4) !important;
+  border-radius: 10px !important;
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.4);
+  margin-top: 6px;
+}
+
+.lic-btn-submit-req:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(99, 102, 241, 0.55);
+}
+
+.lic-btn-submit-req:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Status Alert Box */
+.lic-req-status-box {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  animation: licFadeIn 0.25s ease;
+}
+
+.lic-req-status-box.pending {
+  background: rgba(2, 132, 199, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #7dd3fc;
+}
+
+.lic-req-status-box.approved {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(52, 211, 153, 0.5);
+  color: #6ee7b7;
+}
+
+.lic-req-status-box.rejected {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+}
+
+.lic-status-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.lic-status-title {
+  font-weight: 800;
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.lic-status-desc {
+  font-size: 11px;
+  opacity: 0.95;
+}
+
+@media (max-width: 820px) {
+  .lic-card {
+    grid-template-columns: 1fr;
+    max-height: 96vh;
+    overflow-y: auto;
+  }
+  .lic-hero {
+    padding: 24px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .lic-panel {
+    padding: 24px;
+  }
+}
+</style>
+
+
+<style id="obsidian-command-station-v3">
+/* =====================================================================
+   ALEX BRIGHT TOOL — OBSIDIAN COMMAND STATION v3.0
+   Complete Layout + Identity Transformation | Preserve All IDs & Logic
+   ===================================================================== */
+
+/* ── DESIGN TOKENS ─────────────────────────────────────────────────── */
+:root {
+  --bg:          #0c0c10;
+  --bg-2:        #13141c;
+  --bg-3:        #1a1d28;
+  --bg-4:        #222538;
+  --accent:      #7c3aed;
+  --accent-lit:  #a78bfa;
+  --accent-dim:  rgba(124,58,237,0.14);
+  --cyan:        #06b6d4;
+  --cyan-lit:    #67e8f9;
+  --green:       #10b981;
+  --green-lit:   #34d399;
+  --danger:      #ef4444;
+  --warn:        #f59e0b;
+  --text:        #ecedf2;
+  --text-2:      #8b8d9e;
+  --text-3:      #575a72;
+  --border:      rgba(255,255,255,0.07);
+  --border-2:    rgba(255,255,255,0.14);
+  --sidebar-w:   70px;
+  --header-h:    44px;
+  --composer-w:  390px;
+  --r-sm:        7px;
+  --r:           11px;
+  --r-lg:        16px;
+  --ease:        cubic-bezier(0.16, 1, 0.3, 1);
+  --dur:         0.18s;
+  --shadow:      0 6px 28px rgba(0,0,0,0.55);
+}
+
+/* ── GLOBAL BASE ────────────────────────────────────────────────────── */
+html, body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Be Vietnam Pro", sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.11); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* ── OFFLINE BANNER ─────────────────────────────────────────────────── */
+.offline, #offline {
+  background: var(--danger) !important;
+  color: #fff !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  padding: 5px 14px !important;
+  text-align: center !important;
+  position: fixed !important;
+  top: var(--header-h) !important;
+  left: var(--sidebar-w) !important;
+  right: 0 !important;
+  z-index: 999 !important;
+}
+#offline[hidden] { display: none !important; }
+
+/* ── HEADER: SLIM COMMAND BAR (full width) ──────────────────────────── */
+header.bar {
+  position: fixed !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  height: var(--header-h) !important;
+  background: var(--bg-2) !important;
+  border-bottom: 1px solid var(--border) !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 12px 0 calc(var(--sidebar-w) + 14px) !important;
+  gap: 8px !important;
+  z-index: 95 !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04) !important;
+}
+
+.brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.4px !important;
+  color: var(--text) !important;
+}
+
+.mark, .brand .mark {
+  display: inline-flex !important;
+  width: 26px !important; height: 26px !important;
+  border-radius: 8px !important;
+  background: linear-gradient(135deg, var(--accent), var(--cyan)) !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 14px !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 0 12px rgba(124,58,237,0.5) !important;
+}
+
+.ver, #ver {
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  color: var(--text-3) !important;
+  padding: 1px 6px !important;
+  border: 1px solid var(--border-2) !important;
+  border-radius: 4px !important;
+}
+
+#brand-badge, .badge-vip {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.4px !important;
+  padding: 2px 10px !important;
+  border-radius: 20px !important;
+  background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(6,182,212,0.15)) !important;
+  border: 1px solid rgba(124,58,237,0.4) !important;
+  color: var(--accent-lit) !important;
+}
+
+.pulse, #pulse {
+  width: 7px !important; height: 7px !important;
+  border-radius: 50% !important;
+  background: var(--green) !important;
+  box-shadow: 0 0 8px var(--green) !important;
+  animation: abPulse 2.5s ease infinite !important;
+  flex-shrink: 0 !important;
+}
+@keyframes abPulse {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.6); opacity: 0.5; }
+}
+
+.lic, #lic {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: var(--green-lit) !important;
+  white-space: nowrap !important;
+}
+
+.right {
+  margin-left: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+
+/* Header buttons */
+header.bar .btn, header .btn {
+  border: 1px solid var(--border-2) !important;
+  background: transparent !important;
+  color: var(--text-2) !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  padding: 4px 10px !important;
+  border-radius: var(--r-sm) !important;
+  cursor: pointer !important;
+  transition: all var(--dur) var(--ease) !important;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  line-height: 1.5 !important;
+  text-decoration: none !important;
+}
+header.bar .btn:hover, header .btn:hover {
+  background: var(--bg-3) !important;
+  color: var(--text) !important;
+}
+#pausebtn.on {
+  background: rgba(239,68,68,0.15) !important;
+  border-color: rgba(239,68,68,0.4) !important;
+  color: #fca5a5 !important;
+}
+.icobtn {
+  width: 30px !important; height: 30px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.icobtn svg {
+  width: 14px !important; height: 14px !important;
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
+/* ── LEFT SIDEBAR: nav#rtabs TRANSFORMED ────────────────────────────── */
+nav#rtabs {
+  position: fixed !important;
+  left: 0 !important;
+  top: var(--header-h) !important;
+  bottom: 0 !important;
+  width: var(--sidebar-w) !important;
+  background: var(--bg-2) !important;
+  border-right: 1px solid var(--border) !important;
+  z-index: 90 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 10px 0 16px !important;
+  gap: 2px !important;
+  box-shadow: 2px 0 16px rgba(0,0,0,0.3) !important;
+}
+
+/* Hide keyboard hint in sidebar */
+nav#rtabs .tabhint, nav#rtabs .hint2 { display: none !important; }
+
+/* Sidebar navigation buttons */
+nav#rtabs button {
+  width: 100% !important;
+  min-height: 58px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--text-3) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  padding: 6px 4px !important;
+  cursor: pointer !important;
+  transition: color var(--dur) var(--ease), background var(--dur) var(--ease) !important;
+  font-size: 9.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1px !important;
+  line-height: 1.25 !important;
+  position: relative !important;
+  text-align: center !important;
+  word-break: keep-all !important;
+}
+
+/* Icons via CSS pseudo-elements */
+nav#rtabs button::before {
+  font-size: 20px !important;
+  line-height: 1 !important;
+  display: block !important;
+  transition: transform var(--dur) var(--ease) !important;
+}
+nav#rtabs button[data-tab="video"]::before    { content: "🎬" !important; }
+nav#rtabs button[data-tab="accounts"]::before { content: "👥" !important; }
+nav#rtabs button[data-tab="assets"]::before   { content: "🗂️" !important; }
+nav#rtabs button[data-tab="logs"]::before     { content: "📋" !important; }
+
+nav#rtabs button:hover {
+  color: var(--text) !important;
+  background: rgba(255,255,255,0.04) !important;
+}
+nav#rtabs button:hover::before { transform: scale(1.12) !important; }
+
+/* Active sidebar item: left inset glow bar + tint */
+nav#rtabs button.on {
+  color: var(--accent-lit) !important;
+  background: var(--accent-dim) !important;
+  box-shadow: inset 3px 0 0 var(--accent) !important;
+}
+
+/* ── MAIN LAYOUT: COMPOSER + CONTENT (below header, right of sidebar) ── */
+main {
+  position: fixed !important;
+  left: var(--sidebar-w) !important;
+  top: var(--header-h) !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  display: flex !important;
+  background: var(--bg) !important;
+  overflow: hidden !important;
+  /* Reset old grid */
+  grid-template-columns: unset !important;
+  height: auto !important;
+}
+
+/* ── COMPOSER PANEL (aside) ─────────────────────────────────────────── */
+aside {
+  width: var(--composer-w) !important;
+  min-width: var(--composer-w) !important;
+  max-width: var(--composer-w) !important;
+  height: 100% !important;
+  background: var(--bg-2) !important;
+  border-right: 1px solid var(--border) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-shrink: 0 !important;
+}
+
+.composer {
+  padding: 14px 14px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100% !important;
+}
+
+#pane-single, #pane-multi, #pane-pro {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 0 auto !important;
+}
+#pane-single[hidden], #pane-multi[hidden], #pane-pro[hidden] {
+  display: none !important;
+}
+
+/* ── PROMO BOX ──────────────────────────────────────────────────────── */
+.promo-box {
+  background: linear-gradient(135deg, rgba(124,58,237,0.09) 0%, rgba(19,20,28,0.9) 100%) !important;
+  border: 1px solid rgba(124,58,237,0.22) !important;
+  border-radius: var(--r) !important;
+  padding: 10px 12px !important;
+  margin-bottom: 10px !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3) !important;
+}
+.promo-header { margin-bottom: 3px !important; display: flex !important; align-items: center !important; justify-content: space-between !important; }
+.promo-headline { font-size: 13px !important; font-weight: 800 !important; color: var(--text) !important; }
+.promo-desc { font-size: 11px !important; color: var(--text-2) !important; margin-top: 2px !important; }
+.promo-tag { font-size: 10px !important; font-weight: 700 !important; color: var(--accent-lit) !important; }
+.promo-hot { font-size: 10px !important; font-weight: 700 !important; color: var(--green-lit) !important; }
+
+/* ── ADMIN NOTES BOX ────────────────────────────────────────────────── */
+#admin-notes-box {
+  background: linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(19,20,28,0.9) 100%) !important;
+  border: 1px solid rgba(245,158,11,0.3) !important;
+  border-radius: var(--r) !important;
+  padding: 10px 12px !important;
+  margin-bottom: 10px !important;
+}
+#admin-notes-content {
+  font-size: 12px !important;
+  color: #e2e8f0 !important;
+  line-height: 1.6 !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+}
+
+/* ── MODE SWITCHER (1 Luồng / Đa Luồng / Pro) ──────────────────────── */
+.composer-mode-bar {
+  display: grid !important;
+  grid-template-columns: 1fr 1.1fr 1fr !important;
+  background: var(--bg-3) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--r) !important;
+  padding: 3px !important;
+  gap: 3px !important;
+  margin-bottom: 12px !important;
+}
+.mode-tab-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  padding: 7px 6px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  background: transparent !important;
+  color: var(--text-3) !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all var(--dur) var(--ease) !important;
+}
+.mode-tab-btn:hover:not(.on) {
+  background: rgba(255,255,255,0.05) !important;
+  color: var(--text-2) !important;
+}
+.mode-tab-btn.on {
+  background: var(--accent) !important;
+  color: #fff !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 12px rgba(124,58,237,0.5) !important;
+  border-radius: 7px !important;
+}
+.mode-tab-btn svg { flex-shrink: 0 !important; }
+
+/* ── COMPOSER HEAD ──────────────────────────────────────────────────── */
+.composer-head {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 6px !important;
+}
+.composer-head h2 {
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  color: var(--text-2) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.6px !important;
+}
+.ptools { display: flex !important; gap: 4px !important; }
+
+/* ── PROMPT TEXTAREA ────────────────────────────────────────────────── */
+.pwrap { position: relative !important; }
+.pwrap textarea, textarea#p, textarea#p_multi, textarea#p_pro {
+  width: 100% !important;
+  background: var(--bg-3) !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: var(--r) !important;
+  color: var(--text) !important;
+  font-size: 12.5px !important;
+  font-family: inherit !important;
+  line-height: 1.6 !important;
+  padding: 10px 12px !important;
+  resize: vertical !important;
+  min-height: 100px !important;
+  height: 108px !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease) !important;
+}
+.pwrap textarea:focus, textarea#p:focus, textarea#p_multi:focus, textarea#p_pro:focus {
+  outline: none !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.2) !important;
+}
+
+.counter {
+  display: flex !important;
+  justify-content: space-between !important;
+  font-size: 10.5px !important;
+  color: var(--text-3) !important;
+  margin-top: 5px !important;
+  margin-bottom: 8px !important;
+}
+.counter kbd {
+  background: var(--bg-4) !important;
+  border: 1px solid var(--border-2) !important;
+  border-radius: 4px !important;
+  padding: 0 4px !important;
+  font-size: 10px !important;
+  font-family: inherit !important;
+}
+
+.tagchips, #tagchips { margin-bottom: 6px !important; }
+
+/* Warn / Error boxes */
+.warn, #pwarn {
+  background: rgba(245,158,11,0.1) !important;
+  border: 1px solid rgba(245,158,11,0.3) !important;
+  border-radius: var(--r-sm) !important;
+  padding: 8px 10px !important;
+  font-size: 11px !important;
+  color: #fde68a !important;
+  margin: 6px 0 !important;
+}
+.err, #ferr, #ferr_multi, #ferr_pro, #perr {
+  background: rgba(239,68,68,0.1) !important;
+  border-left: 3px solid var(--danger) !important;
+  border-radius: 0 var(--r-sm) var(--r-sm) 0 !important;
+  padding: 8px 10px !important;
+  font-size: 11.5px !important;
+  color: #fca5a5 !important;
+  margin: 6px 0 !important;
+}
+
+/* ── PARAMETER GRID BOX ─────────────────────────────────────────────── */
+.param-grid-box {
+  background: var(--bg-3) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--r-lg) !important;
+  padding: 12px !important;
+  margin-top: 10px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.compact-field, .field {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+  margin: 0 !important;
+}
+
+.compact-field .lbl, .compact-field label, .field label, .field .lbl {
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  color: var(--text-2) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 0 !important;
+}
+
+.param-split-row {
+  display: grid !important;
+  grid-template-columns: 1.2fr 1fr !important;
+  gap: 8px !important;
+}
+
+.param-acc-row, .two {
+  display: grid !important;
+  grid-template-columns: 1.4fr 0.8fr !important;
+  gap: 8px !important;
+}
+
+/* ── SEGMENT CONTROLS (#model, #dur, #ratio) ────────────────────────── */
+.seg { display: flex !important; flex-wrap: wrap !important; gap: 4px !important; }
+
+.seg button, .seg > button {
+  padding: 4px 10px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  border: 1.5px solid var(--border-2) !important;
+  background: var(--bg-4) !important;
+  color: var(--text-2) !important;
+  cursor: pointer !important;
+  transition: all var(--dur) var(--ease) !important;
+  white-space: nowrap !important;
+}
+.seg button:hover {
+  border-color: var(--accent) !important;
+  color: var(--text) !important;
+}
+.seg button.on {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 10px rgba(124,58,237,0.45) !important;
+}
+
+/* ── SELECTS & INPUTS ───────────────────────────────────────────────── */
+select {
+  background: var(--bg-4) !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: var(--r-sm) !important;
+  color: var(--text) !important;
+  font-size: 12px !important;
+  font-family: inherit !important;
+  padding: 6px 8px !important;
+  width: 100% !important;
+  cursor: pointer !important;
+  transition: border-color var(--dur) var(--ease) !important;
+}
+select:focus {
+  outline: none !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.2) !important;
+}
+input[type="number"] {
+  background: var(--bg-4) !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: var(--r-sm) !important;
+  color: var(--text) !important;
+  font-size: 12px !important;
+  font-family: inherit !important;
+  padding: 6px 8px !important;
+  width: 100% !important;
+  transition: border-color var(--dur) var(--ease) !important;
+}
+input[type="number"]:focus {
+  outline: none !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.2) !important;
+}
+
+.mini { font-size: 11.5px !important; padding: 4px 8px !important; }
+
+input[type="search"], .search {
+  background: var(--bg-3) !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: var(--r) !important;
+  color: var(--text) !important;
+  font-size: 12px !important;
+  font-family: inherit !important;
+  padding: 5px 10px !important;
+  min-width: 140px !important;
+  transition: border-color var(--dur) var(--ease) !important;
+}
+input[type="search"]:focus, .search:focus {
+  outline: none !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.18) !important;
+}
+
+.chk, label.chk {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 11.5px !important;
+  color: var(--text-2) !important;
+  cursor: pointer !important;
+}
+.chk input[type="checkbox"] { accent-color: var(--accent) !important; }
+label.chk.inline { display: inline-flex !important; }
+
+/* ── IMAGE UPLOAD AREA ──────────────────────────────────────────────── */
+.field-thumbs { margin-top: 10px !important; }
+.thumb-lbl-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 6px !important;
+}
+.thumbs, #thumbs {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  min-height: 50px !important;
+  background: var(--bg-3) !important;
+  border: 1.5px dashed var(--border-2) !important;
+  border-radius: var(--r) !important;
+  padding: 8px !important;
+  align-items: flex-start !important;
+  transition: border-color var(--dur) var(--ease) !important;
+}
+.thumbs:hover, #thumbs:hover { border-color: rgba(124,58,237,0.4) !important; }
+
+.chk-row { display: flex !important; flex-direction: column !important; gap: 4px !important; margin-top: 6px !important; }
+
+/* ── STICKY FOOTER (CREATE BUTTON AREA) ─────────────────────────────── */
+.composer-sticky-footer {
+  position: sticky !important;
+  bottom: 0 !important;
+  background: var(--bg-2) !important;
+  padding: 12px 0 8px !important;
+  margin-top: auto !important;
+  border-top: 1px solid var(--border) !important;
+}
+
+/* ── PRIMARY CTA: CREATE VIDEO BUTTONS ──────────────────────────────── */
+button#go, button.btn-studio-create:not(#go_pro) {
+  width: 100% !important;
+  padding: 13px 16px !important;
+  border-radius: var(--r) !important;
+  border: none !important;
+  background: linear-gradient(135deg, var(--green) 0%, #059669 100%) !important;
+  color: #fff !important;
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.3px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all var(--dur) var(--ease) !important;
+  box-shadow: 0 4px 18px rgba(16,185,129,0.45) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+button#go:hover { transform: translateY(-1px) !important; box-shadow: 0 6px 24px rgba(16,185,129,0.6) !important; }
+button#go:active { transform: none !important; }
+button#go:disabled {
+  background: var(--bg-3) !important;
+  color: var(--text-3) !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+}
+
+button#go_multi.btn-studio-create {
+  width: 100% !important;
+  padding: 13px 16px !important;
+  border-radius: var(--r) !important;
+  border: none !important;
+  background: linear-gradient(135deg, var(--cyan) 0%, #0284c7 100%) !important;
+  color: #fff !important;
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all var(--dur) var(--ease) !important;
+  box-shadow: 0 4px 18px rgba(6,182,212,0.45) !important;
+}
+button#go_multi:hover { transform: translateY(-1px) !important; box-shadow: 0 6px 24px rgba(6,182,212,0.6) !important; }
+button#go_multi:disabled { background: var(--bg-3) !important; color: var(--text-3) !important; box-shadow: none !important; cursor: not-allowed !important; }
+
+button#go_pro.btn-studio-create {
+  width: 100% !important;
+  padding: 13px 16px !important;
+  border-radius: var(--r) !important;
+  border: none !important;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--cyan) 100%) !important;
+  color: #fff !important;
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all var(--dur) var(--ease) !important;
+  box-shadow: 0 4px 18px rgba(124,58,237,0.45) !important;
+}
+button#go_pro:hover { transform: translateY(-1px) !important; box-shadow: 0 6px 24px rgba(124,58,237,0.6) !important; }
+button#go_pro:disabled { background: var(--bg-3) !important; color: var(--text-3) !important; box-shadow: none !important; cursor: not-allowed !important; }
+
+.btn-create-ico { font-size: 18px !important; }
+.cost { font-size: 11px !important; color: var(--text-3) !important; margin-top: 6px !important; text-align: center !important; }
+#costwarn { font-size: 11px !important; }
+
+/* ── GENERAL BUTTON SYSTEM ──────────────────────────────────────────── */
+.btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 5px 12px !important;
+  border-radius: var(--r-sm) !important;
+  border: 1px solid var(--border-2) !important;
+  background: var(--bg-3) !important;
+  color: var(--text-2) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all var(--dur) var(--ease) !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+}
+.btn:hover { background: var(--bg-4) !important; color: var(--text) !important; }
+.btn.sm { padding: 4px 9px !important; font-size: 11px !important; }
+.btn.primary {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 10px rgba(124,58,237,0.35) !important;
+}
+.btn.primary:hover { background: var(--accent-lit) !important; box-shadow: 0 4px 16px rgba(124,58,237,0.5) !important; }
+.btn.danger {
+  background: rgba(239,68,68,0.12) !important;
+  border-color: rgba(239,68,68,0.35) !important;
+  color: #fca5a5 !important;
+}
+.btn.danger:hover { background: rgba(239,68,68,0.22) !important; }
+.btn.quiet { background: transparent !important; border-color: var(--border) !important; }
+.btn.quiet:hover { background: var(--bg-3) !important; }
+
+.linkish {
+  background: none !important;
+  border: none !important;
+  color: var(--accent-lit) !important;
+  font-size: 11px !important;
+  cursor: pointer !important;
+  padding: 2px 4px !important;
+  text-decoration: underline !important;
+  font-weight: 600 !important;
+}
+
+/* ── RIGHT CONTENT PANEL ────────────────────────────────────────────── */
+section.rpane {
+  flex: 1 !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  background: var(--bg) !important;
+}
+
+.pane, section.pane {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 14px 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+.pane[hidden], section.pane[hidden] { display: none !important; }
+
+/* ── KPI CARDS ──────────────────────────────────────────────────────── */
+.kpis, #kpi, #acckpi {
+  display: flex !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+.kpi {
+  flex: 1 1 120px !important;
+  background: var(--bg-2) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--r) !important;
+  padding: 10px 14px !important;
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease) !important;
+}
+.kpi:hover { border-color: rgba(124,58,237,0.35) !important; transform: translateY(-1px) !important; }
+.kpi .l {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.6px !important;
+  color: var(--text-3) !important;
+}
+.kpi .v {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  color: var(--text) !important;
+  margin-top: 3px !important;
+}
+.kpi .v small { font-size: 11px !important; color: var(--text-2) !important; font-weight: 600 !important; }
+.kpi.wide { flex: 2 1 240px !important; }
+.kpi.wide .bars { height: 20px !important; margin-top: 3px !important; }
+.kpi.wide .legend { margin-top: 2px !important; font-size: 10px !important; }
+
+/* ── FEED TOOLBAR ───────────────────────────────────────────────────── */
+.feed-head {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  padding: 8px 0 !important;
+}
+
+/* ── INNER TABS (filter tabs) ───────────────────────────────────────── */
+nav.tabs, .tabs#tabs {
+  display: flex !important;
+  gap: 2px !important;
+  background: var(--bg-2) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--r-sm) !important;
+  padding: 2px !important;
+}
+nav.tabs button, .tabs button {
+  padding: 4px 10px !important;
+  border: none !important;
+  border-radius: 5px !important;
+  background: transparent !important;
+  color: var(--text-3) !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all var(--dur) var(--ease) !important;
+}
+nav.tabs button:hover, .tabs button:hover { color: var(--text) !important; background: rgba(255,255,255,0.05) !important; }
+nav.tabs button.on, .tabs button.on { background: var(--bg-3) !important; color: var(--text) !important; }
+
+/* View selector (table/grid) */
+.view#viewsel {
+  display: flex !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--r-sm) !important;
+  overflow: hidden !important;
+  background: var(--bg-2) !important;
+}
+.view#viewsel button {
+  padding: 4px 10px !important;
+  border: none !important;
+  background: transparent !important;
+  color: var(--text-3) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all var(--dur) var(--ease) !important;
+}
+.view#viewsel button:hover { background: var(--bg-3) !important; color: var(--text) !important; }
+.view#viewsel button.on { background: var(--accent-dim) !important; color: var(--accent-lit) !important; }
+
+/* ── TOOLBAR ROWS ───────────────────────────────────────────────────── */
+.toolbar, #jobtools, .acctools {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+}
+.bulkbar, #bulkbar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 7px 12px !important;
+  background: var(--bg-2) !important;
+  border-radius: var(--r-sm) !important;
+  border: 1px solid var(--border-2) !important;
+}
+#bulkbar[hidden] { display: none !important; }
+
+.count, #jcount { font-size: 11px !important; color: var(--text-3) !important; white-space: nowrap !important; }
+
+/* ── VIDEO JOBS GRID ────────────────────────────────────────────────── */
+#jobs.grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+  gap: 12px !important;
+}
+
+/* ── VIDEO TABLE ────────────────────────────────────────────────────── */
+.jtbl table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 5px !important;
+}
+.jtbl tr td {
+  background: var(--bg-2) !important;
+  padding: 10px 12px !important;
+  border-top: 1px solid var(--border) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+.jtbl tr td:first-child {
+  border-left: 1px solid var(--border) !important;
+  border-radius: var(--r-sm) 0 0 var(--r-sm) !important;
+}
+.jtbl tr td:last-child {
+  border-right: 1px solid var(--border) !important;
+  border-radius: 0 var(--r-sm) var(--r-sm) 0 !important;
+}
+.jtbl tr:hover td { background: var(--bg-3) !important; }
+
+/* ── ACCOUNTS TABLE ─────────────────────────────────────────────────── */
+.tbl, table.tbl { width: 100% !important; border-collapse: collapse !important; }
+.tbl th {
+  background: var(--bg-2) !important;
+  padding: 8px 10px !important;
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  color: var(--text-2) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.4px !important;
+  border-bottom: 1px solid var(--border) !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+}
+.tbl td {
+  padding: 9px 10px !important;
+  font-size: 12px !important;
+  border-bottom: 1px solid var(--border) !important;
+  vertical-align: middle !important;
+}
+.tbl tr:hover td { background: rgba(124,58,237,0.04) !important; }
+.tblwrap { overflow-x: auto !important; }
+.sortable { cursor: pointer !important; }
+.sortable:hover { color: var(--accent-lit) !important; }
+
+/* ── ACCOUNT TOOLS ──────────────────────────────────────────────────── */
+.sessbanner, #sessbanner {
+  background: rgba(245,158,11,0.1) !important;
+  border: 1px solid rgba(245,158,11,0.3) !important;
+  border-radius: var(--r-sm) !important;
+  padding: 8px 12px !important;
+  font-size: 12px !important;
+  color: #fde68a !important;
+}
+
+/* Add profile form */
+form#addp, .addp {
+  display: flex !important;
+  gap: 8px !important;
+  align-items: center !important;
+  padding: 10px 12px !important;
+  background: var(--bg-2) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--r) !important;
+}
+form#addp input { flex: 1 !important; }
+
+/* ── ASSETS GRID ────────────────────────────────────────────────────── */
+.assetgrid, #assetgrid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+  gap: 12px !important;
+}
+
+/* ── LOG BOX ────────────────────────────────────────────────────────── */
+.logbox, #logbox {
+  flex: 1 !important;
+  font-size: 12px !important;
+  font-family: 'Consolas', 'Menlo', 'Monaco', monospace !important;
+  background: var(--bg-2) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--r) !important;
+  padding: 10px 12px !important;
+  overflow-y: auto !important;
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
+  line-height: 1.7 !important;
+  min-height: 200px !important;
+}
+
+/* ── MULTI-ACC LIST ─────────────────────────────────────────────────── */
+.multi-ready-badge {
+  background: rgba(16,185,129,0.1) !important;
+  border: 1px solid rgba(16,185,129,0.3) !important;
+  border-radius: var(--r-sm) !important;
+  padding: 6px 10px !important;
+  font-size: 11.5px !important;
+  color: var(--green-lit) !important;
+  margin: 6px 0 !important;
+}
+.multi-acc-list, #multi_acc_list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  max-height: 100px !important;
+  overflow-y: auto !important;
+}
+
+/* ── MENTION DROPDOWN ───────────────────────────────────────────────── */
+.mention, #mention {
+  position: absolute !important;
+  z-index: 200 !important;
+  background: var(--bg-2) !important;
+  border: 1px solid var(--border-2) !important;
+  border-radius: var(--r) !important;
+  box-shadow: var(--shadow) !important;
+  overflow-y: auto !important;
+  max-height: 200px !important;
+}
+#mention[hidden] { display: none !important; }
+
+/* ── TOAST NOTIFICATIONS ────────────────────────────────────────────── */
+.toasts, #toasts {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  align-items: flex-end !important;
+}
+
+/* ── DROP OVERLAY ───────────────────────────────────────────────────── */
+.dropover, #dropover {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(124,58,237,0.2) !important;
+  border: 3px dashed var(--accent) !important;
+  z-index: 9998 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  color: var(--accent-lit) !important;
+  backdrop-filter: blur(4px) !important;
+}
+#dropover[hidden] { display: none !important; }
+
+/* ── HINT ELEMENTS ──────────────────────────────────────────────────── */
+.hint { font-size: 12px !important; color: var(--text-3) !important; line-height: 1.6 !important; }
+.hint b { color: var(--text-2) !important; }
+.hint2 { font-size: 11px !important; color: var(--text-3) !important; }
+
+/* ── MISC FORM ELEMENTS ─────────────────────────────────────────────── */
+#perimage-f, #face-image-f, #dry-f {
+  margin-top: 4px !important;
+}
+
+input#pname {
+  flex: 1 !important;
+  background: var(--bg-3) !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: var(--r-sm) !important;
+  color: var(--text) !important;
+  font-size: 12px !important;
+  font-family: inherit !important;
+  padding: 6px 10px !important;
+}
+input#pname:focus { outline: none !important; border-color: var(--accent) !important; }
+
+input#accq, input#assetq {
+  min-width: 180px !important;
+}
+
+/* ── BROADCAST MODAL OVERRIDE ───────────────────────────────────────── */
+#broadcast-modal { z-index: 99998 !important; }
+
+/* ── SIDEBAR LOGO ACCENT (visual branding in sidebar top) ───────────── */
+nav#rtabs::before {
+  content: "⚡" !important;
+  font-size: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, var(--accent), var(--cyan)) !important;
+  box-shadow: 0 0 16px rgba(124,58,237,0.5) !important;
+  margin-bottom: 10px !important;
+  flex-shrink: 0 !important;
+}
+
+/* ── ACCKPI Tweaks ──────────────────────────────────────────────────── */
+#acckpi { margin-bottom: 4px !important; }
+
+/* ── Sidebar bottom settings shortcut ──────────────────────────────── */
+nav#rtabs::after {
+  content: "⚙️" !important;
+  font-size: 20px !important;
+  margin-top: auto !important;
+  margin-bottom: 4px !important;
+  opacity: 0.5 !important;
+  cursor: default !important;
+}
+
+/* ── Prominent Open Folder Button ──────────────────────────────── */
+#openFolder {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(124, 58, 237, 0.2)) !important;
+  border: 1px solid rgba(6, 182, 212, 0.45) !important;
+  color: #38bdf8 !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+#openFolder:hover {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(124, 58, 237, 0.35)) !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.35) !important;
+}
+
+</style>
+
+
+</head>
+<body>
+<header class="bar">
+  <div class="brand"><img src="assets/icon.png" class="brand-logo" alt="Logo" style="width:26px;height:26px;border-radius:6px;margin-right:8px;vertical-align:middle;box-shadow:0 0 10px rgba(6,182,212,0.5);">ALEX BRIGHT TOOL<span class="ver" id="ver"></span><span class="badge-vip" id="brand-badge">⚡ PRO UNLIMITED</span></div>
+  <div class="pulse" id="pulse"></div>
+  <div class="right">
+    <span class="lic" id="lic"></span>
+    <a class="btn sm quiet" href="https://t.me/anony88888" target="_blank" style="text-decoration:none;color:#38bdf8;font-weight:600" title="Hỗ trợ kỹ thuật qua Telegram">✈️ @anony88888</a>
+    <button class="btn sm quiet" id="guidebtn" title="Hướng dẫn setup cho người mới tải (4 bước nhanh)">💡 Hướng dẫn</button>
+    <button class="btn sm" id="pausebtn" title="Tạm dừng hàng đợi: job đang chạy vẫn chạy nốt, không phát job mới">Tạm dừng</button>
+    <button class="btn sm quiet icobtn" id="themebtn" title="Giao diện: tự động / sáng / tối"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.4A5.5 5.5 0 0 1 12.4 3.1 9 9 0 0 0 12 3z"/></svg></button>
+    <button class="btn sm quiet icobtn" id="settingsbtn" title="Cài đặt (Ctrl+,)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+    <button class="btn sm" id="openFolder">📁 Mở thư mục video</button>
+  </div>
+</header>
+<div class="offline" id="offline" hidden>Mất kết nối với app — đang thử lại…</div>
+
+<main>
+<aside>
+  <form id="f" class="composer" autocomplete="off">
+    <div class="promo-box">
+      <div class="promo-header">
+        <span class="promo-tag">⭐ ALEX BRIGHT TOOL</span>
+        <span class="promo-hot">KHÔNG GIỚI HẠN</span>
+      </div>
+      <div class="promo-headline">Tạo Video 2.5 30s Không Giới Hạn</div>
+      <div class="promo-desc">Chạy song song đa tài khoản · Độ dài tối đa 30s · Hỗ trợ Telegram: @anony88888</div>
+    </div>
+
+    <!-- HỘP LƯU Ý QUAN TRỌNG TỪ ADMIN -->
+    <div id="admin-notes-box" style="display:none; margin-bottom:12px; padding:12px 14px; border-radius:12px; background:linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(15, 23, 42, 0.85) 100%); border:1px solid rgba(245, 158, 11, 0.35); box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+        <div style="display:flex; align-items:center; gap:6px; font-size:12px; font-weight:800; color:#fbbf24; text-transform:uppercase; letter-spacing:0.5px;">
+          <span>📌</span> LƯU Ý TỪ ADMIN
+        </div>
+        <span id="admin-notes-tag" style="font-size:10.5px; background:rgba(245, 158, 11, 0.2); color:#fef3c7; border:1px solid rgba(245, 158, 11, 0.4); padding:1px 6px; border-radius:4px; font-weight:600;">Quan trọng</span>
+      </div>
+      <div id="admin-notes-content" style="font-size:12px; line-height:1.55; color:#e2e8f0; white-space:pre-wrap; word-break:break-word;"></div>
+    </div>
+
+    <!-- Thanh chuyển 3 chế độ: 1 Luồng vs Đa luồng vs Chế độ Pro -->
+    <div class="composer-mode-bar">
+      <button type="button" class="mode-tab-btn on" id="btn-mode-single" data-mode="single">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Tạo 1 luồng
+      </button>
+      <button type="button" class="mode-tab-btn" id="btn-mode-multi" data-mode="multi">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        Tạo đa luồng
+      </button>
+      <button type="button" class="mode-tab-btn" id="btn-mode-pro" data-mode="pro">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        Chế độ Pro
+      </button>
+    </div>
+
+    <!-- CHẾ ĐỘ 1: TẠO 1 LUỒNG (ERGONOMIC 2026 STUDIO) -->
+    <div id="pane-single">
+      <div class="composer-head">
+        <h2>Tạo 1 video</h2>
+        <div class="ptools">
+          <button type="button" class="btn sm quiet" id="pasteclip" title="Dán prompt từ clipboard">📋 Dán</button>
+          <button type="button" class="btn sm quiet" id="histbtn" title="Prompt đã dùng gần đây">🕒 Lịch sử</button>
+        </div>
+      </div>
+      <div class="pwrap">
+        <textarea id="p" placeholder="Nhập prompt video: nhân vật, bối cảnh, góc máy, chuyển động… Xuống dòng tự do, toàn bộ nội dung tạo thành 1 video. Gõ @ để gắn nhân vật." spellcheck="false"></textarea>
+        <div class="mention" id="mention" hidden></div>
+      </div>
+      <div class="counter"><span id="pcount">0 ký tự</span><span>Gửi nhanh: <kbd>Ctrl</kbd> + <kbd>Enter</kbd></span></div>
+      <div id="tagchips" class="tagchips"></div>
+      <div id="pwarn" class="warn" hidden>Prompt đã có số giây / chữ "second": app sẽ gửi nguyên văn (không thêm câu độ dài). Độ dài gửi lên Dola vẫn là nút bên dưới; nếu Dola hỏi lại về độ dài, sửa số trong prompt cho khớp.</div>
+
+      <!-- LƯỚI THÔNG SỐ GỌN GÀNG: TIẾT KIỆM 60% DIỆN TÍCH DỌC -->
+      <div class="param-grid-box">
+        <div class="field compact-field"><span class="lbl">Model AI</span><div class="seg" id="model"></div></div>
+        
+        <div class="param-split-row">
+          <div class="field compact-field"><span class="lbl">Độ dài</span><div class="seg" id="dur"></div></div>
+          <div class="field compact-field"><span class="lbl">Khung hình</span><div class="seg wrap" id="ratio"></div></div>
+        </div>
+
+        <div class="two param-acc-row">
+          <div class="field compact-field"><label for="prof">Tài khoản chạy</label><select id="prof"></select></div>
+          <div class="field compact-field"><label for="copies">Số bản</label><input id="copies" type="number" min="1" max="20" value="1"></div>
+        </div>
+      </div>
+
+      <div class="field compact-field field-thumbs">
+        <div class="thumb-lbl-row">
+          <span class="lbl">Ảnh tham chiếu</span>
+          <span class="hint2">kéo-thả hoặc Ctrl+V</span>
+        </div>
+        <div class="thumbs" id="thumbs"></div>
+        <input id="img" type="file" accept="image/*" multiple hidden>
+        <div class="chk-row">
+          <label class="chk" id="perimage-f" hidden><input type="checkbox" id="perimage"> Mỗi ảnh một video (I2V hàng loạt)</label>
+          <label class="chk" id="face-image-f"><input type="checkbox" id="face_image"> Upload ảnh mặt người</label>
+        </div>
+      </div>
+      <label class="chk" id="dry-f" hidden title="Chỉ hiện ở bản dev: chặn request tại máy để kiểm đường ống"><input type="checkbox" id="dry"> Chạy thử đường ống, không tốn credit (dev)</label>
+
+      <!-- STICKY ACTION FOOTER: CỐ ĐỊNH CHÂN TRANG - LUÔN NHÌN THẤY NÚT TẠO VIDEO -->
+      <div class="composer-sticky-footer">
+        <button type="submit" class="btn primary btn-studio-create" id="go">
+          <span class="btn-create-ico">⚡</span>
+          <span>TẠO VIDEO 1 LUỒNG NGAY</span>
+        </button>
+        <div class="cost"><span id="cost"></span><span id="accready"></span></div>
+        <div id="costwarn" class="warn" hidden></div>
+        <div id="ferr" class="err"></div>
+      </div>
+    </div>
+
+    <!-- CHẾ ĐỘ 2: TẠO ĐA LUỒNG (ERGONOMIC 2026 STUDIO) -->
+    <div id="pane-multi" hidden>
+      <div class="composer-head"><h2>Tạo đa luồng</h2>
+        <div class="ptools">
+          <button type="button" class="btn sm quiet" id="loadtxt_multi" title="Nạp file .txt (mỗi dòng một prompt)">📁 Nạp .txt</button>
+          <button type="button" class="btn sm quiet" id="pasteclip_multi" title="Dán danh sách prompt từ clipboard">📋 Dán</button>
+          <button type="button" class="btn sm quiet" id="clean_multi" title="Xoá bỏ các dòng trống thừa">✨ Lọc dòng</button>
+          <input id="txtfile_multi" type="file" accept=".txt,text/plain" hidden>
+        </div>
+      </div>
+      <div class="pwrap">
+        <textarea id="p_multi" style="min-height:115px;height:120px" placeholder="Nhập danh sách prompt tạo video (mỗi dòng = 1 video riêng biệt):&#10;Dòng 1: Một cô gái áo dài trắng đi dạo phố cổ Hà Nội nắng sớm, 4K điện ảnh&#10;Dòng 2: Cận cảnh chú mèo con nô đùa trên bãi cỏ hoa vàng, góc máy chậm..." spellcheck="false"></textarea>
+      </div>
+      <div class="counter"><span id="pcount_multi">0 prompt (0 video)</span><span>Mỗi dòng = 1 video song song</span></div>
+
+      <div class="multi-ready-badge" id="multi_ready_badge">
+        <span id="multi_ready_text">🟢 Đang tính toán tài khoản sẵn sàng…</span>
+      </div>
+
+      <div class="param-grid-box">
+        <div class="two" style="margin-top:6px">
+          <div class="field compact-field">
+            <label for="multi_dispatch">Phân phối nick</label>
+            <select id="multi_dispatch">
+              <option value="auto">⚡ Tự chia đều (Nhanh nhất)</option>
+              <option value="selected">🎯 Chọn nick cụ thể</option>
+            </select>
+          </div>
+          <div class="field compact-field">
+            <label for="copies_multi">Bản sao / prompt</label>
+            <input id="copies_multi" type="number" min="1" max="10" value="1">
+          </div>
+        </div>
+        <div id="multi_acc_select_wrap" hidden>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;margin-bottom:4px">
+            <span style="font-size:11px;color:var(--ink-2)">Tích chọn nick tham gia:</span>
+            <button type="button" class="linkish" id="multi_acc_select_all" style="font-size:11px">Chọn tất cả</button>
+          </div>
+          <div class="multi-acc-list" id="multi_acc_list"></div>
+        </div>
+
+        <div class="field compact-field"><span class="lbl">Model chung</span><div class="seg" id="model_multi"></div></div>
+        <div class="param-split-row">
+          <div class="field compact-field"><span class="lbl">Độ dài chung</span><div class="seg" id="dur_multi"></div></div>
+          <div class="field compact-field"><span class="lbl">Khung hình</span><div class="seg wrap" id="ratio_multi"></div></div>
+        </div>
+      </div>
+
+      <div class="composer-sticky-footer">
+        <button type="button" class="btn primary btn-studio-create" id="go_multi">
+          <span class="btn-create-ico">🚀</span>
+          <span>BẮT ĐẦU CHẠY ĐA LUỒNG</span>
+        </button>
+        <div class="cost"><span id="cost_multi"></span><span id="accready_multi"></span></div>
+        <div id="ferr_multi" class="err"></div>
+      </div>
+    </div>
+
+    <!-- CHẾ ĐỘ 3: CHẾ ĐỘ PRO (ERGONOMIC 2026 STUDIO) -->
+    <div id="pane-pro" hidden>
+      <div class="composer-head"><h2>Chế độ Pro (1 Acc)</h2>
+        <div class="ptools">
+          <button type="button" class="btn sm quiet" id="loadtxt_pro" title="Nạp file .txt (mỗi dòng một prompt)">📁 Nạp .txt</button>
+          <button type="button" class="btn sm quiet" id="pasteclip_pro" title="Dán danh sách prompt từ clipboard">📋 Dán</button>
+          <button type="button" class="btn sm quiet" id="clean_pro" title="Xoá bỏ các dòng trống thừa">✨ Lọc dòng</button>
+          <input id="txtfile_pro" type="file" accept=".txt,text/plain" hidden>
+        </div>
+      </div>
+      <div class="multi-ready-badge" style="margin-top:6px;background:rgba(59,130,246,0.12);border-color:rgba(59,130,246,0.3);color:#3b82f6">
+        <span>🔄 <b>Nguyên lý SuperTool:</b> Cứ 2 cảnh tự tạo Chat mới sau 30s → Tối đa ~10 video/ngày/nick.</span>
+      </div>
+      <div class="pwrap" style="margin-top:8px">
+        <textarea id="p_pro" style="min-height:115px;height:120px" placeholder="Nhập kịch bản phân cảnh (mỗi dòng = 1 cảnh, tối đa 10 cảnh/ngày):&#10;Cảnh 1: Một cô gái áo dài trắng đi dạo phố cổ Hà Nội nắng sớm, 4K điện ảnh&#10;Cảnh 2: Cận cảnh chú mèo con nô đùa trên bãi cỏ hoa vàng, góc máy chậm..." spellcheck="false"></textarea>
+      </div>
+      <div class="counter"><span id="pcount_pro">0 prompt (0 video)</span><span>Tối đa ~10 video/ngày</span></div>
+
+      <div class="param-grid-box">
+        <div class="field compact-field" style="margin-top:6px">
+          <label for="prof_pro">Tài khoản chạy (Chọn 1 nick duy nhất)</label>
+          <select id="prof_pro"></select>
+        </div>
+
+        <div class="field compact-field"><span class="lbl">Model</span>
+          <div class="seg"><button type="button" class="on" style="cursor:default">ALEX BRIGHT 2.5 (Pro) ⭐</button></div>
+        </div>
+        <div class="param-split-row">
+          <div class="field compact-field"><span class="lbl">Độ dài video</span><div class="seg" id="dur_pro"></div></div>
+          <div class="field compact-field"><span class="lbl">Khung hình</span><div class="seg wrap" id="ratio_pro"></div></div>
+        </div>
+      </div>
+
+      <div class="composer-sticky-footer">
+        <button type="button" class="btn primary btn-studio-create" id="go_pro" style="background:linear-gradient(135deg, #2563eb 0%, #38bdf8 100%) !important;">
+          <span class="btn-create-ico">👑</span>
+          <span>BẮT ĐẦU CHẠY CHẾ ĐỘ PRO</span>
+        </button>
+        <div class="cost"><span id="cost_pro"></span></div>
+        <div id="ferr_pro" class="err"></div>
+      </div>
+    </div>
+  </form>
+</aside>
+
+<section class="rpane">
+  <nav class="rtabs" id="rtabs" aria-label="Khu vực">
+    <button data-tab="video" class="on">Video <b id="n-video"></b></button>
+    <button data-tab="accounts">Tài khoản <b id="n-accounts"></b></button>
+    <button data-tab="assets">Kho nhân vật <b id="n-assets"></b></button>
+    <button data-tab="logs">Nhật ký</button>
+    <span class="hint2 tabhint">phím 1–4</span>
+  </nav>
+
+  <section class="pane" id="tab-video">
+    <div class="kpis" id="kpi"></div>
+    <div class="feed-head">
+      <nav class="tabs" id="tabs" aria-label="Lọc video"></nav>
+      <input id="q" type="search" class="search" placeholder="Tìm prompt, #số…">
+      <select id="accf" class="mini"><option value="">Mọi tài khoản</option></select>
+      <select id="sortsel" class="mini"><option value="new">Mới nhất</option><option value="old">Cũ nhất</option><option value="err">Lỗi trước</option></select>
+      <div class="tabs view" id="viewsel" aria-label="Kiểu hiển thị">
+        <button type="button" data-view="table" title="Bảng: mỗi video một hàng, thấy trạng thái, tài khoản, tệp">Bảng</button>
+        <button type="button" data-view="grid" title="Lưới: thẻ video lớn, phát ngay trong thẻ">Lưới</button>
+      </div>
+      <span class="count" id="jcount"></span>
+    </div>
+    <div class="toolbar" id="jobtools">
+      <button class="btn sm quiet" id="selall">Chọn tất cả</button>
+      <button class="btn sm quiet" id="retryfailed">Chạy lại mọi lỗi</button>
+      <button class="btn sm quiet" id="cleandone">Dọn job đã xong</button>
+      <button class="btn sm quiet" id="cancelqueued">Huỷ hàng đợi</button>
+    </div>
+    <div class="bulkbar" id="bulkbar" hidden>
+      <b id="bulkn"></b>
+      <button class="btn sm" data-bulk="retry">Chạy lại</button>
+      <button class="btn sm" data-bulk="cancel">Huỷ</button>
+      <button class="btn sm danger" data-bulk="delete">Xoá</button>
+      <button class="btn sm quiet" id="bulkclear">Bỏ chọn</button>
+    </div>
+    <div id="jobs" class="grid"></div>
+  </section>
+
+  <section class="pane" id="tab-accounts" hidden>
+    <div class="kpis" id="acckpi"></div>
+    <div class="warn" id="sessbanner" hidden></div>
+    <div class="acctools">
+      <button type="button" class="btn sm primary" id="quickadd" title="Mở trực tiếp trình duyệt Dola để đăng nhập, bấm nút đã đăng nhập là xong">+ Thêm acc nhanh</button>
+      <button type="button" class="btn sm" id="quickaddfb" style="background:#1877f2;color:#fff;border-color:#1877f2;font-weight:600" title="Đăng nhập Dola tự động bằng Cookie Facebook">+ Đăng nhập bằng cookie FB</button>
+      <button type="button" class="btn sm" id="addcookie" title="Thêm tài khoản bằng cookie dola.com — không mở cửa sổ Chrome nào">+ Dán cookie</button>
+      <button type="button" class="btn sm" id="addbulk" title="Thêm nhiều tài khoản một lần, mỗi bộ cookie một khối">+ Thêm nhiều nick</button>
+      <button type="button" class="btn sm quiet" id="addgoogle" title="Thêm tài khoản rồi mở cửa sổ đăng nhập Google">+ Đăng nhập Google</button>
+      <button type="button" class="btn sm quiet" id="checkall" title="Kiểm tra đăng nhập và credit của mọi tài khoản đang rảnh">Kiểm tra tất cả</button>
+      <button type="button" class="btn sm quiet" id="assignproxy" title="Chia danh sách proxy ở Cài đặt cho các nick chưa có proxy riêng">Chia proxy</button>
+      <input id="accq" type="search" class="search" placeholder="Tìm tên, id…">
+    </div>
+    <form id="addp" class="addp" hidden>
+      <input id="pname" type="text" placeholder="Tên tài khoản mới, ví dụ: Shop A">
+      <button type="submit" class="btn sm">Thêm và mở cửa sổ đăng nhập</button>
+      <button type="button" class="btn sm quiet" id="addp-cancel">Huỷ</button>
+    </form>
+    <div class="tblwrap"><table class="tbl" id="acctbl"><thead><tr>
+      <th>#</th><th data-sort="name" class="sortable">Tài khoản</th><th>Trạng thái</th><th data-sort="session" class="sortable">Phiên</th><th data-sort="credits" class="sortable">Credit</th><th>Proxy</th><th data-sort="check" class="sortable">Kiểm gần nhất</th><th>Auto Reset Credit</th><th>Thao tác</th>
+    </tr></thead><tbody id="acclist"></tbody></table></div>
+    <div id="perr" class="err"></div>
+  </section>
+
+  <section class="pane" id="tab-assets" hidden>
+    <div class="acctools">
+      <button type="button" class="btn sm" id="addasset">+ Thêm nhân vật / asset</button>
+      <input id="assetq" type="search" class="search" placeholder="Tìm @tag, tên, mô tả…">
+      <select id="assetsort" class="mini"><option value="updated">Mới cập nhật</option><option value="created">Mới tạo</option><option value="name">Tên A→Z</option><option value="images">Nhiều ảnh nhất</option></select>
+      <select id="assetfilter" class="mini"><option value="">Tất cả</option><option value="nocover">Thiếu ảnh bìa</option><option value="nodesc">Thiếu mô tả</option><option value="noimg">Không có ảnh</option></select>
+    </div>
+    <p class="hint">Gõ <b>@tag</b> trong prompt: app thay bằng tên, nối mô tả nhân vật vào prompt và gắn ảnh của asset làm ảnh tham chiếu. Đó là cách giữ nhân vật đồng nhất giữa nhiều video.</p>
+    <div id="assetgrid" class="assetgrid"></div>
+  </section>
+
+  <section class="pane" id="tab-logs" hidden>
+    <div class="acctools">
+      <select id="loglevel" class="mini"><option value="">Mọi mức</option><option value="warn">Cảnh báo</option><option value="error">Lỗi</option></select>
+      <select id="logscope" class="mini"><option value="">Mọi nguồn</option></select>
+      <label class="chk inline"><input type="checkbox" id="logfollow" checked> Tự cuộn</label>
+      <button type="button" class="btn sm quiet" id="logcopy" title="Chép các dòng lỗi gần nhất để gửi hỗ trợ">Chép lỗi</button>
+      <a class="btn sm quiet" id="logexport" href="#" download>Xuất .txt</a>
+      <button type="button" class="btn sm quiet danger" id="logclear">Xoá</button>
+      <span class="hint2" id="logcount"></span>
+    </div>
+    <div id="logbox" class="logbox" aria-live="polite"></div>
+  </section>
+</section>
+</main>
+
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<div id="dropover" class="dropover" hidden><div>Thả ảnh vào đây — làm ảnh tham chiếu</div></div>
+
+<div id="licbox" class="overlay lic-overlay" data-locked="1">
+  <div class="lic-card">
+    <!-- Cột trái: Giới thiệu thương hiệu & Tính năng đột phá -->
+    <div class="lic-hero">
+      <div>
+        <div class="lic-brand">
+          <div class="lic-brand-icon">⚡</div>
+          <div class="lic-brand-text">
+            <h1 class="lic-brand-title">ALEX BRIGHT TOOL</h1>
+            <div class="lic-brand-tag">PRO UNLIMITED SUITE v2.5</div>
+          </div>
+        </div>
+        
+        <p class="lic-hero-desc">
+          Hệ thống tự động hoá sản xuất Video AI 30s chất lượng cao chuyên nghiệp thế hệ mới. Đẩy mạnh hiệu suất sáng tạo nội dung với sức mạnh Dola 2.5 đỉnh cao.
+        </p>
+
+        <div class="lic-features">
+          <div class="lic-feat-item">
+            <div class="lic-feat-ico">🎬</div>
+            <div class="lic-feat-content">
+              <div class="lic-feat-title">Video 30s Đa Luồng Song Song</div>
+              <div class="lic-feat-sub">Dựng hàng loạt video 30 giây cùng lúc với nhiều tài khoản, giảm 90% thời gian chờ.</div>
+            </div>
+          </div>
+          <div class="lic-feat-item">
+            <div class="lic-feat-ico">🔄</div>
+            <div class="lic-feat-content">
+              <div class="lic-feat-title">Tự Động Đảo Nick & Xoay Proxy</div>
+              <div class="lic-feat-sub">Tự động hóa phiên đăng nhập, tích hợp Tor & Proxy xoay chống checkpoint tuyệt đối.</div>
+            </div>
+          </div>
+          <div class="lic-feat-item">
+            <div class="lic-feat-ico">⚡</div>
+            <div class="lic-feat-content">
+              <div class="lic-feat-title">Chế Độ Dola Pro Độc Quyền</div>
+              <div class="lic-feat-sub">Bypass giới hạn, hỗ trợ Prompt dài và tạo chuỗi phân cảnh liền mạch đồng nhất.</div>
+            </div>
+          </div>
+          <div class="lic-feat-item">
+            <div class="lic-feat-ico">🛡️</div>
+            <div class="lic-feat-content">
+              <div class="lic-feat-title">Bảo Vệ Bản Quyền Phần Cứng</div>
+              <div class="lic-feat-sub">Kích hoạt 1-1 theo Hardware ID, máy chủ Cloudflare Zero-Trust bảo vệ 24/7.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lic-hero-foot">
+        <span>🔒 Hardware-Locked Protection</span>
+        <span class="dot">•</span>
+        <span>Cloudflare Zero-Trust 2026</span>
+      </div>
+    </div>
+
+    <!-- Cột phải: Khối kích hoạt bản quyền & Kênh hỗ trợ -->
+    <div class="lic-panel">
+      <div>
+        <div class="lic-badge-wrap">
+          <div class="lic-status-badge">
+            <span class="lic-status-dot"></span>
+            <span>BẢN QUYỀN CHƯA KÍCH HOẠT</span>
+          </div>
+        </div>
+
+        <div class="lic-tabs-nav">
+          <button type="button" class="lic-tab-btn active" id="btn-tab-req">
+            <span>💬</span> Gửi Yêu Cầu & Kèm Bill
+          </button>
+          <button type="button" class="lic-tab-btn" id="btn-tab-contact">
+            <span>✈️</span> Kênh Hỗ Trợ Trực Tiếp
+          </button>
+        </div>
+
+        <!-- TAB 1: GỬI YÊU CẦU & KÈM BILL TRỰC TIẾP -->
+        <div id="view-tab-req">
+          <form id="lic-req-form" autocomplete="off">
+            <div class="lic-form-group">
+              <label class="lic-form-lbl">👤 TÊN BẠN / TELEGRAM LIÊN HỆ:</label>
+              <input type="text" id="req-name" class="lic-input" placeholder="Ví dụ: Hoàng Long (@hoanglong88)..." required>
+            </div>
+
+            <div class="lic-form-group">
+              <label class="lic-form-lbl">📦 GÓI BẢN QUYỀN CẦN KÍCH HOẠT:</label>
+              <select id="req-plan-type" class="lic-select">
+                <option value="trial_2h">⏳ Xin Dùng Thử Miễn Phí (2 Giờ)</option>
+                <option value="trial_1d">⏳ Xin Dùng Thử (1 Ngày)</option>
+                <option value="pro_30d" selected>💎 Gói PRO 1 Tháng (30 Ngày)</option>
+                <option value="pro_90d">💎 Gói PRO 3 Tháng (90 Ngày)</option>
+                <option value="pro_lifetime">👑 Gói PRO Vĩnh Viễn Không Giới Hạn</option>
+              </select>
+            </div>
+
+            <div class="lic-form-group">
+              <label class="lic-form-lbl">💬 LỜI NHẮN CHO ADMIN:</label>
+              <textarea id="req-msg" class="lic-textarea" rows="2" placeholder="Ví dụ: Em đã chuyển khoản 500k qua Vietcombank, nhờ Admin duyệt giúp em nhé..."></textarea>
+            </div>
+
+            <div class="lic-form-group">
+              <label class="lic-form-lbl">🧾 ĐÍNH KÈM ẢNH BILL CHUYỂN KHOẢN (NẾU CÓ):</label>
+              <div class="lic-bill-dropzone" id="lic-bill-dropzone">
+                <input type="file" id="req-bill-file" accept="image/*" style="display:none;">
+                <div id="lic-bill-prompt" class="lic-bill-placeholder">
+                  <span style="font-size:16px;">📷</span>
+                  <span>Bấm để tải ảnh Bill hoặc <b>Dán ảnh (Ctrl + V)</b></span>
+                </div>
+                <div id="lic-bill-preview-box" class="lic-bill-preview-box" style="display:none;">
+                  <img id="lic-bill-img" src="" alt="Bill preview">
+                  <div class="lic-bill-overlay">
+                    <span id="lic-bill-filename">bill.jpg</span>
+                    <button type="button" id="btn-remove-bill" class="lic-bill-remove">✕ Xóa ảnh</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" id="btn-submit-req" class="lic-btn-submit-req">
+              <span>🚀</span> GỬI YÊU CẦU DUYỆT VỀ TELEGRAM ADMIN
+            </button>
+
+            <div style="display:flex; gap:8px; margin-top:10px;">
+              <button type="button" id="btn-quick-zalo" class="lic-contact-btn" style="flex:1; padding:9px; background:rgba(2,132,199,0.15); border:1px solid rgba(2,132,199,0.4); color:#38bdf8; font-weight:700; border-radius:8px; cursor:pointer;">
+                💬 Nhắn Zalo Admin
+              </button>
+              <button type="button" id="btn-quick-tele" class="lic-contact-btn" style="flex:1; padding:9px; background:rgba(56,189,248,0.15); border:1px solid rgba(56,189,248,0.4); color:#7dd3fc; font-weight:700; border-radius:8px; cursor:pointer;">
+                ✈️ Chat Telegram Admin
+              </button>
+            </div>
+
+            <!-- Trạng thái phản hồi Real-time từ Admin -->
+            <div id="lic-req-status-box" class="lic-req-status-box" style="display:none;">
+              <div id="lic-req-status-icon" class="lic-status-icon">⏳</div>
+              <div class="lic-status-body">
+                <div id="lic-req-status-title" class="lic-status-title">Đang chờ Admin duyệt...</div>
+                <div id="lic-req-status-desc" class="lic-status-desc">Yêu cầu đã được gửi trực tiếp tới Telegram của Admin. Tool sẽ tự động mở khóa ngay khi được phê duyệt!</div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- TAB 2: KÊNH LIÊN HỆ TRỰC TIẾP -->
+        <div id="view-tab-contact" style="display:none;">
+          <h2 class="lic-heading">Kênh Hỗ Trợ & Mua Key</h2>
+          <p class="lic-subtext">
+            Bạn có thể nhắn tin trực tiếp cho Admin qua Zalo, Telegram hoặc Email bên dưới để được tư vấn và hỗ trợ kích hoạt:
+          </p>
+
+          <div class="lic-contact-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:10px;">
+            <div class="lic-contact-card zalo-card" id="btn-open-zalo" title="Bấm để mở chat Zalo">
+              <div class="lic-contact-head">
+                <span class="lic-contact-ico">💬</span>
+                <span class="lic-contact-badge" style="color:#0284c7; background:rgba(2,132,199,0.15); border:1px solid rgba(2,132,199,0.3); padding:2px 6px; border-radius:6px; font-size:10px; font-weight:700;">ZALO ADMIN</span>
+              </div>
+              <div class="lic-contact-val" id="val-contact-zalo" style="font-weight:700; color:#fff; font-size:12.5px; margin:4px 0;">Zalo Hỗ Trợ</div>
+              <button type="button" class="lic-contact-btn" id="btn-copy-zalo">📋 Sao chép</button>
+            </div>
+
+            <div class="lic-contact-card" id="btn-open-tele" title="Bấm để mở chat Telegram">
+              <div class="lic-contact-head">
+                <span class="lic-contact-ico">✈️</span>
+                <span class="lic-contact-badge">TELEGRAM ADMIN</span>
+              </div>
+              <div class="lic-contact-val" id="val-contact-tele">@anony88888</div>
+              <button type="button" class="lic-contact-btn" id="btn-copy-tele">📋 Sao chép</button>
+            </div>
+
+            <div class="lic-contact-card mail-card" id="btn-open-email" title="Bấm để gửi email hỗ trợ">
+              <div class="lic-contact-head">
+                <span class="lic-contact-ico">✉️</span>
+                <span class="lic-contact-badge">EMAIL HỖ TRỢ</span>
+              </div>
+              <div class="lic-contact-val" id="val-contact-email">alexbright.dmca@gmail.com</div>
+              <button type="button" class="lic-contact-btn" id="btn-copy-email">📋 Sao chép</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hardware ID Section (Chỉ hiển thị 1 ID duy nhất) -->
+        <div class="lic-hwid-box">
+          <div class="lic-hwid-lbl-row">
+            <span class="lic-hwid-lbl">🔑 MÃ MÁY CỦA BẠN (HWID DUY NHẤT)</span>
+            <span class="lic-hwid-hint">Click vào để chọn tất cả</span>
+          </div>
+          <div class="lic-hwid-row">
+            <input id="licmid" class="lic-hwid-input" type="text" readonly spellcheck="false" value="Đang tải mã máy..." placeholder="Đang đọc HWID...">
+            <button type="button" id="liccopybtn" class="lic-btn-copy-hwid" title="Sao chép mã máy">
+              <span id="liccopytext">📋 Sao Chép ID</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Action Button -->
+        <button type="button" id="lictry" class="lic-btn-verify">
+          <span id="lictryicon">🔄</span>
+          <span id="lictrytext">TÔI ĐÃ LIÊN HỆ — KIỂM TRA BẢN QUYỀN</span>
+        </button>
+
+        <!-- Error / Status Area -->
+        <div id="licerr" class="lic-err-box"></div>
+      </div>
+
+      <!-- Hidden form for legacy compatibility -->
+      <form id="licform" style="display:none;" autocomplete="off">
+        <input id="licmcode" type="hidden" value="">
+        <input id="lickey" type="hidden" value="">
+        <button type="submit" id="licgo"></button>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="quickaddbox" class="overlay" data-locked="1" hidden>
+  <div class="box">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px">
+      <h2 id="quickaddtitle" style="margin:0">⚡ Thêm tài khoản nhanh</h2>
+      <button type="button" class="btn sm" id="quickadd-btn-fb" style="background:#1877f2;color:#fff;border-color:#1877f2;font-size:12.5px;font-weight:600;padding:5px 12px;display:inline-flex;align-items:center;gap:6px" title="Đăng nhập Dola tự động bằng Cookie Facebook">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Đăng nhập bằng cookie FB
+      </button>
+    </div>
+    <p id="quickadddesc">Tạo profile Chrome riêng biệt và mở trang Dola để bạn đăng nhập trực tiếp.</p>
+    
+    <div class="field" style="margin-top:14px">
+      <label for="quickaddname">Tên tài khoản</label>
+      <input id="quickaddname" type="text" placeholder="ví dụ: Shop A, Nick 1..." autocomplete="off">
+    </div>
+    
+    <div class="field" style="margin-top:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <label for="quickaddproxy" id="quickaddproxylabel" style="margin-bottom:0">Proxy riêng (tuỳ chọn)</label>
+        <label class="chk" style="font-size:12px;cursor:pointer;display:flex;align-items:center;gap:4px">
+          <input type="checkbox" id="quickaddproxyrotate"> <span>🔄 Xoay (70s)</span>
+        </label>
+      </div>
+      <div id="quickaddproxykey-wrap" hidden style="margin-bottom:8px">
+        <label for="quickaddproxykey" style="font-size:12px;font-weight:600;color:var(--accent);display:block;margin-bottom:4px">🔑 Key Proxy Xoay (proxyxoay.shop)</label>
+        <input id="quickaddproxykey" type="text" placeholder="Dán key proxy xoay tại đây (VD: a1b2c3d4...)" spellcheck="false" autocomplete="off">
+      </div>
+      <input id="quickaddproxy" type="text" placeholder="host:port:user:pass, gõ &quot;tor&quot; (miễn phí), hoặc để trống" spellcheck="false" autocomplete="off">
+      <div class="hint" id="quickaddproxyhint" style="margin-top:4px;display:none">Nếu dùng proxy xoay: bạn chỉ cần nhập Key xoay ở trên. Ô proxy này để trống app sẽ tự lấy IP từ key.</div>
+    </div>
+
+    <div class="banner" id="quickaddstatus" style="margin-top:14px;padding:12px 14px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);font-size:13px;line-height:1.5">
+      <div id="quickaddstatus-text">Bấm <b>«Mở Chrome đăng nhập»</b> để tạo profile và mở trang Dola.</div>
+    </div>
+
+    <div class="row" style="margin-top:16px">
+      <button type="button" class="btn primary" id="quickaddstart" style="padding:9px 18px;font-size:14px">🚀 Mở Chrome đăng nhập</button>
+      <button type="button" class="btn primary" id="quickaddconfirm" hidden style="padding:9px 18px;font-size:14px">✅ Đã đăng nhập (Lưu & Đóng tab)</button>
+      <button type="button" class="btn quiet" id="quickaddcancel">Huỷ</button>
+    </div>
+    <div id="quickadderr" class="err" style="margin-top:10px"></div>
+  </div>
+</div>
+
+<div id="quickaddfbbox" class="overlay" data-locked="1" hidden>
+  <div class="box" style="max-width:560px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+      <div style="background:#1877f2;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </div>
+      <div>
+        <h2 style="margin:0;font-size:18px">Đăng nhập Dola bằng Cookie Facebook</h2>
+        <div style="font-size:12.5px;color:var(--ink-2);margin-top:2px">Tự động gắn Cookie FB, mở Dola và đăng nhập tự động</div>
+      </div>
+    </div>
+
+    <!-- Step Tabs -->
+    <div style="display:flex;border-bottom:1px solid var(--line);margin:14px 0 16px 0">
+      <div id="fbstep1tab" style="flex:1;padding:8px;text-align:center;font-weight:600;font-size:13px;border-bottom:2px solid var(--accent);color:var(--accent);cursor:pointer">1. Nhập Cookie FB</div>
+      <div id="fbstep2tab" style="flex:1;padding:8px;text-align:center;font-weight:600;font-size:13px;color:var(--ink-3);cursor:pointer">2. Proxy & Tự động đăng nhập</div>
+    </div>
+
+    <!-- Step 1 Content -->
+    <div id="fbstep1sec">
+      <div class="field">
+        <label for="fbraw">Dữ liệu tài khoản / Cookie Facebook</label>
+        <textarea id="fbraw" rows="5" spellcheck="false" placeholder="Dán định dạng: UID|Pass|c_user=...;xs=...;fr=...;datr=...|Email|EmailPass|2FA|...&#10;hoặc dán trực tiếp chuỗi c_user=...;xs=...;" style="font-size:12.5px;font-family:monospace;resize:vertical;min-height:95px"></textarea>
+      </div>
+
+      <div id="fbparsedinfo" style="display:none;margin-top:10px;padding:10px 12px;background:var(--panel-2);border-radius:8px;border:1px solid var(--line);font-size:12.5px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span>UID: <b id="fbparseduid">-</b></span>
+          <span id="fbparsedstatus" style="color:var(--good, #10b981);font-weight:600">✓ Đã nhận diện cookie</span>
+        </div>
+        <div style="color:var(--ink-2);font-size:11.5px" id="fbparsedcookies">c_user, xs, fr, datr</div>
+      </div>
+
+      <div class="field" style="margin-top:12px">
+        <label for="fbaccname">Tên tài khoản (tuỳ chọn)</label>
+        <input id="fbaccname" type="text" placeholder="Để trống sẽ tự đặt theo UID FB" autocomplete="off">
+      </div>
+
+      <div class="row" style="margin-top:18px;display:flex;justify-content:space-between">
+        <button type="button" class="btn quiet" data-close>Huỷ</button>
+        <button type="button" class="btn primary" id="fbstep1next" style="padding:8px 22px;font-weight:600">OK / Tiếp tục ➡️</button>
+      </div>
+    </div>
+
+    <!-- Step 2 Content -->
+    <div id="fbstep2sec" hidden>
+      <div class="field">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <label for="fbproxy" id="fbproxylabel" style="margin-bottom:0">Proxy riêng (tuỳ chọn)</label>
+          <label class="chk" style="font-size:12px;cursor:pointer;display:flex;align-items:center;gap:4px">
+            <input type="checkbox" id="fbproxyrotate"> <span>🔄 Xoay (70s)</span>
+          </label>
+        </div>
+        <div id="fbproxykey-wrap" hidden style="margin-bottom:8px">
+          <label for="fbproxykey" style="font-size:12px;font-weight:600;color:var(--accent);display:block;margin-bottom:4px">🔑 Key Proxy Xoay (proxyxoay.shop)</label>
+          <input id="fbproxykey" type="text" placeholder="Dán key proxy xoay tại đây (VD: a1b2c3d4...)" spellcheck="false" autocomplete="off">
+        </div>
+        <input id="fbproxy" type="text" placeholder="host:port:user:pass, gõ &quot;tor&quot; (miễn phí), hoặc để trống" spellcheck="false" autocomplete="off">
+        <div class="hint" id="fbproxyhint" style="margin-top:4px">Khuyến nghị dùng proxy sạch trùng location với Facebook để tránh checkpoint. Nếu bật xoay: điền Key ở trên, ô proxy có thể để trống.</div>
+      </div>
+
+      <div class="banner" id="fbautostatus" style="margin-top:14px;padding:12px 14px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);font-size:13px;line-height:1.5">
+        <div id="fbautostatus-text">Sẵn sàng. Bấm nút dưới để mở trình duyệt và tự động đăng nhập Dola bằng FB.</div>
+      </div>
+
+      <div class="row" style="margin-top:18px;display:flex;justify-content:space-between">
+        <button type="button" class="btn quiet" id="fbstep2back">⬅️ Quay lại</button>
+        <button type="button" class="btn primary" id="fbstartlogin" style="background:#1877f2;color:#fff;border-color:#1877f2;padding:9px 20px;font-size:14px;font-weight:600">🚀 Mở trình duyệt & Đăng nhập Dola</button>
+      </div>
+    </div>
+
+    <div id="fbautologinerr" class="err" style="margin-top:10px"></div>
+  </div>
+</div>
+
+<div id="ckfbbox" class="overlay" hidden>
+  <form id="ckfbform" class="box">
+    <h2 id="ckfbtitle" style="display:flex;align-items:center;gap:8px">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      <span>Cập nhật Cookie Facebook</span>
+    </h2>
+    <p>Dán cookie Facebook mới vào ô dưới để app tự động đăng nhập Dola và làm mới phiên:</p>
+    <div class="hint" style="margin-bottom:10px">Hỗ trợ dạng chuỗi <code>c_user=...; xs=...;</code>, định dạng JSON từ Cookie-Editor, hoặc dạng tài khoản <code>uid|pass|2fa|cookie</code>.</div>
+    <div class="field"><label for="ckfbtext">Cookie / Dữ liệu Facebook</label><textarea id="ckfbtext" rows="5" spellcheck="false" placeholder="c_user=1000...; xs=... hoặc định dạng JSON..."></textarea></div>
+    <div id="ckfbparsedinfo" class="hint" style="display:none;color:var(--accent);margin-bottom:8px"></div>
+    <div class="row"><button type="submit" class="btn primary" id="ckfbgo" style="background:#1877f2;border-color:#1877f2">🚀 Cập nhật & Đăng nhập Dola</button><button type="button" class="btn quiet" data-close>Huỷ</button></div>
+    <div id="ckfberr" class="err"></div>
+  </form>
+</div>
+
+<div id="ckbox" class="overlay" hidden>
+  <form id="ckform" class="box">
+    <h2 id="cktitle">Thêm tài khoản bằng cookie</h2>
+    <p>Không mở cửa sổ Chrome nào. Lấy cookie từ trình duyệt đã đăng nhập Dola:</p>
+    <ol class="steps">
+      <li>Cài extension <b>Cookie-Editor</b> cho Chrome/Edge.</li>
+      <li>Mở <b>dola.com</b> (đã đăng nhập) → bấm icon Cookie-Editor → <b>Export</b> → <b>JSON</b>.</li>
+      <li>Dán nguyên văn vào ô dưới.</li>
+    </ol>
+    <div class="field" id="ckname-f"><label for="ckname">Tên tài khoản</label><input id="ckname" type="text" placeholder="ví dụ: Shop A"></div>
+    <div class="field"><label for="cktext">Cookie</label><textarea id="cktext" spellcheck="false" placeholder='[{"name":"sessionid","value":"…","domain":".dola.com", …}]'></textarea></div>
+    <div class="field" id="ckproxy-f">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <label for="ckproxy" id="ckproxylabel" style="margin-bottom:0">Proxy riêng (tuỳ chọn)</label>
+        <label class="chk" style="font-size:12px;cursor:pointer;display:flex;align-items:center;gap:4px">
+          <input type="checkbox" id="ckproxyrotate"> <span>🔄 Xoay (70s)</span>
+        </label>
+      </div>
+      <div id="ckproxykey-wrap" hidden style="margin-bottom:8px">
+        <label for="ckproxykey" style="font-size:12px;font-weight:600;color:var(--accent);display:block;margin-bottom:4px">🔑 Key Proxy Xoay (proxyxoay.shop)</label>
+        <input id="ckproxykey" type="text" placeholder="Dán key proxy xoay tại đây (VD: a1b2c3d4...)" spellcheck="false" autocomplete="off">
+      </div>
+      <input id="ckproxy" type="text" placeholder="host:port:user:pass hoặc user:pass@host:port" spellcheck="false">
+      <div class="hint" id="ckproxyhint" style="margin-top:4px;display:none">Nếu dùng proxy xoay: bạn chỉ cần nhập Key xoay ở trên. Ô proxy này để trống app sẽ tự lấy IP từ key.</div>
+    </div>
+    <div class="row"><button type="submit" class="btn primary" id="ckgo">Nạp và kiểm tra</button><button type="button" class="btn quiet" data-close>Huỷ</button></div>
+    <div id="ckerr" class="err"></div>
+  </form>
+</div>
+
+<div id="bulkbox" class="overlay" hidden>
+  <form id="bulkform" class="box wide">
+    <h2>Thêm nhiều tài khoản</h2>
+    <p>Mỗi tài khoản một khối cookie JSON (dán liên tiếp, cách nhau bằng dòng trống) hoặc một dòng <code>name=value; …</code>. Tên nick tự đặt theo uid, đổi sau được.</p>
+    <div class="two">
+      <div class="field"><label for="bulkck">Cookie</label><textarea id="bulkck" spellcheck="false" placeholder='[{"name":"sessionid", …}]&#10;&#10;[{"name":"sessionid", …}]'></textarea></div>
+      <div class="field"><label for="bulkpx">Proxy (mỗi dòng một proxy, khớp thứ tự khối cookie — tuỳ chọn)</label><textarea id="bulkpx" spellcheck="false" placeholder="host:port:user:pass&#10;user:pass@host:port"></textarea></div>
+    </div>
+    <div class="row"><button type="submit" class="btn primary" id="bulkgo">Thêm tất cả</button><button type="button" class="btn quiet" data-close>Đóng</button></div>
+    <div id="bulkres" class="result" hidden></div>
+    <div id="bulkerr" class="err"></div>
+  </form>
+</div>
+
+<div id="proxybox" class="overlay" hidden>
+  <form id="proxyform" class="box" style="max-width:520px">
+    <h2 id="proxytitle">Proxy riêng</h2>
+    <p style="margin-bottom:12px">Chromium của tài khoản này đi hết qua proxy này (tạo video, đăng nhập, kiểm tra). Gõ "tor" để dùng Tor Exit Node Free. Để trống = đi thẳng bằng IP máy.</p>
+    <div style="margin-bottom:14px;padding:10px 12px;border-radius:8px;background:var(--panel-2);border:1px solid var(--line)">
+      <label class="chk" style="font-weight:600;display:flex;align-items:center;gap:8px;cursor:pointer">
+        <input type="checkbox" id="proxyrotate">
+        <span>🔄 Bật chế độ Proxy xoay (tự xoay IP sau 70s qua proxyxoay.shop)</span>
+      </label>
+    </div>
+    <div class="field" id="proxykey-group" style="margin-bottom:14px">
+      <label for="proxykey" style="font-weight:600;color:var(--accent);display:flex;justify-content:space-between">
+        <span>🔑 Key xoay (proxyxoay.shop)</span>
+        <span style="font-weight:400;font-size:12px;color:var(--ink-3)">Tự động đổi IP mỗi 70s</span>
+      </label>
+      <div style="display:flex;gap:8px;margin-top:4px">
+        <input id="proxykey" type="text" placeholder="Dán key xoay tại đây (VD: a1b2c3d4...)" spellcheck="false" autocomplete="off" style="flex:1">
+        <button type="button" class="btn quiet sm" id="proxytestkey" style="white-space:nowrap;padding:6px 12px">⚡ Lấy IP ngay</button>
+      </div>
+      <div class="hint" style="margin-top:4px">Mỗi tài khoản có thể điền 1 Key xoay riêng. App sẽ tự động gọi API đổi IP mỗi 70 giây.</div>
+    </div>
+    <div class="field" style="margin-bottom:12px">
+      <div style="margin-bottom:10px;display:flex;justify-content:space-between;align-items:center">
+        <label for="proxyval" id="proxylabel" style="font-weight:600;margin-bottom:0">🌐 Proxy / IP hiện tại</label>
+        <button type="button" class="btn sm" id="btnproxyfree" style="background:#0f172a;color:#38bdf8;border:1px solid #0284c7;font-weight:600;padding:3px 10px;display:inline-flex;align-items:center;gap:5px;cursor:pointer">🧅 Chọn Proxy Free (Tor)</button>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:4px">
+        <input id="proxyval" type="text" placeholder="host:port · host:port:user:pass · gõ &quot;tor&quot; (miễn phí)" spellcheck="false" autocomplete="off" style="flex:1">
+        <button type="button" class="btn quiet sm" id="proxytest" style="white-space:nowrap;padding:6px 12px">Kiểm tra kết nối</button>
+      </div>
+      <div class="hint" id="proxyhint" style="margin-top:4px">Gõ "tor" để đi qua Tor Exit Node miễn phí (tự xoay IP mỗi phiên). Hoặc điền proxy HTTP/SOCKS5 riêng.</div>
+    </div>
+    <div class="row" style="margin-top:16px"><button type="submit" class="btn primary" style="padding:8px 20px">💾 Lưu cài đặt</button><button type="button" class="btn quiet" data-close>Huỷ</button></div>
+    <div id="proxyres" class="hint" style="margin-top:10px"></div>
+    <div id="proxyerr" class="err" style="margin-top:6px"></div>
+  </form>
+</div>
+
+
+<div id="detailbox" class="overlay" hidden>
+  <div class="box wide">
+    <div class="playhead">
+      <h2 id="detailtitle">Chi tiết phản hồi Dola</h2>
+      <button type="button" class="btn sm quiet" data-close>Đóng (Esc)</button>
+    </div>
+    <div style="margin-top:14px;display:flex;flex-direction:column;gap:12px">
+      <div class="field">
+        <label style="font-size:12px;font-weight:600;color:var(--ink-2);margin-bottom:4px;display:block">Prompt đã gửi</label>
+        <div id="detailprompt" style="padding:10px 12px;background:var(--panel-2);border-radius:8px;font-size:13px;white-space:pre-wrap;line-height:1.5;max-height:120px;overflow-y:auto;border:1px solid var(--line);user-select:text"></div>
+      </div>
+      <div class="field">
+        <label style="font-size:12px;font-weight:600;color:var(--ink-2);margin-bottom:4px;display:block">Phản hồi từ Dola</label>
+        <div id="detailcontent" style="padding:12px 14px;background:var(--panel);border-radius:8px;font-size:13.5px;white-space:pre-wrap;line-height:1.6;max-height:260px;overflow-y:auto;border:1px solid var(--line);color:var(--text);user-select:text"></div>
+      </div>
+      <div class="row" id="detailmeta" style="font-size:12px;display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+    <div class="row" style="margin-top:16px;display:flex;justify-content:space-between">
+      <button type="button" class="btn sm" id="detailcopy">Sao chép phản hồi</button>
+      <button type="button" class="btn sm quiet" data-close>Đóng</button>
+    </div>
+  </div>
+</div>
+
+<div id="playbox" class="overlay" hidden>
+  <div class="box play">
+    <div class="playhead"><h2 id="pbtitle">Video</h2><button type="button" class="btn sm quiet" data-close>Đóng (Esc)</button></div>
+    <div class="playwrap" oncontextmenu="return false;"><video id="pbvideo" controls controlsList="nodownload nofullscreen noremoteplayback noplaybackrate" disablePictureInPicture disableRemotePlayback playsinline loop oncontextmenu="return false;" ondragstart="return false;"></video></div>
+    <p id="pbprompt" class="pbprompt"></p>
+    <div class="row" id="pbmeta"></div>
+    <div class="row acts" id="pbacts"></div>
+  </div>
+</div>
+
+<div id="confirmbox" class="overlay" hidden>
+  <div class="box">
+    <h2 id="cftitle"></h2>
+    <p id="cfmsg"></p>
+    <div class="row"><button type="button" class="btn" id="cfok">Xoá</button><button type="button" class="btn quiet" id="cfcancel">Huỷ</button></div>
+    <div id="cferr" class="err"></div>
+  </div>
+</div>
+
+<div id="histbox" class="overlay" hidden>
+  <div class="box">
+    <h2>Prompt gần đây</h2>
+    <p>Bấm để đưa về khung soạn. Giữ 30 prompt gần nhất trên máy này.</p>
+    <div id="histlist" class="histlist"></div>
+    <div class="row"><button type="button" class="btn quiet" id="histclear">Xoá lịch sử</button><button type="button" class="btn quiet" data-close>Đóng</button></div>
+  </div>
+</div>
+
+<div id="assetbox" class="overlay" hidden>
+  <form id="assetform" class="box wide">
+    <h2 id="assettitle">Thêm nhân vật / asset</h2>
+    <div class="two">
+      <div class="field"><label for="atag">@Tag (gõ trong prompt)</label><input id="atag" type="text" placeholder="co_lan" spellcheck="false"><div class="hint" id="atagnorm"></div></div>
+      <div class="field"><label for="aname">Tên hiện trong prompt</label><input id="aname" type="text" placeholder="Cô Lan"></div>
+    </div>
+    <div class="field"><label for="adesc">Mô tả nhân vật (nối vào cuối mỗi prompt có gọi @tag)</label>
+      <textarea id="adesc" placeholder="nữ, 25 tuổi, tóc dài đen, áo dài trắng, dáng cao, phong cách thanh lịch…"></textarea>
+      <div class="hint">Đây là thứ giữ nhân vật đồng nhất giữa nhiều video: giới tính, tuổi, tóc, trang phục, vóc dáng, phong cách.</div></div>
+    <div class="field" id="aimg-f">
+      <span class="lbl">Ảnh <span class="hint2">kéo-thả vào đây · bìa gửi kèm đầu tiên</span></span>
+      <div class="thumbs big" id="athumbs"></div>
+      <input id="aimg" type="file" accept="image/*" multiple hidden>
+      <div class="hint">Dola từ chối ảnh có mặt người. Dùng ảnh toàn thân xa, trang phục, sản phẩm, logo.</div>
+    </div>
+    <div class="row"><button type="submit" class="btn primary" id="assetgo">Lưu</button><button type="button" class="btn quiet danger" id="assetdel" hidden>Xoá asset</button><button type="button" class="btn quiet" data-close>Đóng</button></div>
+    <div id="asseterr" class="err"></div>
+  </form>
+</div>
+
+<div id="settingsbox" class="overlay" hidden>
+  <form id="settingsform" class="box wide">
+    <h2>Cài đặt</h2>
+    <div class="sgroup"><h3>Lưu file</h3>
+      <div class="field"><label for="s_output_dir">Thư mục lưu video</label>
+        <div class="rowin"><input id="s_output_dir" type="text" spellcheck="false"><button type="button" class="btn" id="s_pick">Chọn…</button><button type="button" class="btn quiet" id="s_open">Mở</button></div></div>
+      <div class="field"><label for="s_filename_template">Mẫu tên file</label>
+        <input id="s_filename_template" type="text" spellcheck="false">
+        <div class="hint">Xem trước: <b id="s_preview"></b></div>
+        <div class="hint" id="s_placeholders"></div></div>
+    </div>
+    <div class="sgroup"><h3>Tạo video</h3>
+      <label class="chk"><input type="checkbox" id="s_remove_watermark"> Xoá watermark sau khi tải về (mặc định)</label>
+      <div class="two">
+        <div class="field"><label for="s_wait_minutes">Chờ video tối đa (phút)</label><input id="s_wait_minutes" type="number" min="5" max="120"></div>
+        <div class="field"><label>Nghỉ ngẫu nhiên giữa hai job của một nick (giây)</label>
+          <div class="rowin"><input id="s_pause_min_s" type="number" min="0" max="3600" placeholder="từ"><span>–</span><input id="s_pause_max_s" type="number" min="0" max="3600" placeholder="đến"></div></div>
+      </div>
+      <label class="chk"><input type="checkbox" id="s_auto_rotate"> Tự đổi nick khi nick lỗi (hết lượt, chưa đăng nhập, proxy hỏng) — nên để bật</label>
+      <label class="chk"><input type="checkbox" id="s_prompt_duration_hint"> Xin video dài tối đa trong prompt: gửi "Generate the longest possible 9:16 vertical video: …" — Dola tự chọn độ dài dài nhất và dựng luôn, không hỏi lại "chỉ hỗ trợ 4–15 giây"</label>
+    </div>
+    <div class="sgroup"><h3>Thông báo</h3>
+      <label class="chk"><input type="checkbox" id="s_notify_sound"> Âm thanh khi video xong hoặc lỗi</label>
+      <label class="chk"><input type="checkbox" id="s_notify_os"> Thông báo Windows khi app không ở phía trước</label>
+    </div>
+    <div class="sgroup"><h3>Giao diện</h3>
+      <div class="seg" id="s_theme"></div>
+    </div>
+    <div class="sgroup">
+      <h3>Mã máy & Bản quyền</h3>
+      <div class="hint" style="margin-bottom:10px">Hệ thống bản quyền được kích hoạt và quản lý từ xa qua máy chủ Cloudflare theo <b>Mã máy (HWID)</b>.</div>
+      
+      <div class="field">
+        <label for="s_licmid">Mã máy của bạn (HWID duy nhất)</label>
+        <div class="idrow">
+          <input id="s_licmid" type="text" readonly spellcheck="false" value="" style="font-family:monospace;font-weight:600;color:var(--accent,#38bdf8)">
+          <button type="button" class="btn sm" id="s_copy_mid" title="Sao chép mã máy">📋 Chép HWID</button>
+        </div>
+      </div>
+
+      <div class="field" style="margin-top:12px">
+        <label>Trạng thái bản quyền</label>
+        <div id="s_licres" style="padding:10px 14px;border-radius:8px;background:var(--panel-2);border:1px solid var(--line);font-size:13px;line-height:1.5">
+          <span style="color:#10b981;font-weight:600">Đang tải trạng thái...</span>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:12px;gap:8px">
+        <button type="button" class="btn" id="s_lictry">🔄 Đồng bộ / Kiểm tra bản quyền</button>
+        <a class="btn quiet" href="https://t.me/anony88888" target="_blank" style="text-decoration:none">✈️ Telegram: @anony88888</a>
+        <a class="btn quiet" href="mailto:alexbright.dmca@gmail.com" target="_blank" style="text-decoration:none">✉️ alexbright.dmca@gmail.com</a>
+      </div>
+    </div>
+    <div class="sgroup"><h3>Proxy</h3>
+      <div class="field"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <label for="s_proxy_pool" style="margin-bottom:0">Danh sách proxy (mỗi dòng một proxy)</label>
+          <button type="button" class="btn sm" id="s_btn_proxyfree" style="background:#0f172a;color:#38bdf8;border:1px solid #0284c7;font-weight:600;padding:3px 10px;display:inline-flex;align-items:center;gap:5px;cursor:pointer">🧅 Dùng Proxy Free (Tor)</button>
+        </div>
+        <textarea id="s_proxy_pool" spellcheck="false" placeholder="host:port&#10;host:port:user:pass&#10;user:pass@host:port&#10;socks5://host:port"></textarea>
+        <div class="hint">Nhận host:port, host:port:user:pass, user:pass@host:port, socks5://… Sang tab Tài khoản bấm «Chia proxy» để mỗi nick chưa có proxy nhận một cái. Phải là proxy IPv4; SOCKS5 có mật khẩu Chromium không hỗ trợ.</div>
+        <div class="row"><button type="button" class="btn quiet sm" id="s_proxytest">Kiểm tra proxy</button><span class="hint2" id="s_proxyres"></span></div>
+        <div id="s_proxylist" class="result" hidden></div></div>
+      <div style="margin-top:14px;padding:12px;background:var(--panel-2);border-radius:8px;border:1px solid var(--line)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <label for="s_tor_region" style="font-weight:600;margin-bottom:0">🧅 Vùng IP Tor Free (Exit Node)</label>
+          <span style="font-size:11.5px;color:#10b981;font-weight:600">🛡️ Đã khoá loại trừ IP Hoa Kỳ (USA)</span>
+        </div>
+        <select id="s_tor_region" style="width:100%;padding:7px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:13px">
+          <option value="no_us">🌍 Toàn cầu (Tự động — Đã loại trừ 100% IP USA)</option>
+          <option value="eu">🇪🇺 Châu Âu (Đức, Pháp, Hà Lan, Anh, Thụy Sĩ... — Tránh USA)</option>
+          <option value="asia">🇯🇵 Châu Á (Singapore, Nhật Bản, Hàn Quốc, HongKong... — Tránh USA)</option>
+        </select>
+        <div class="hint" style="margin-top:5px;font-size:12px">Hệ thống áp dụng cờ <b>ExcludeExitNodes {us}</b> và <b>StrictNodes 1</b>: Đảm bảo không bao giờ nhận IP của Mỹ.</div>
+      </div>
+    </div>
+    <div class="row"><button type="submit" class="btn primary" id="settingsgo">Lưu cài đặt</button><button type="button" class="btn quiet" data-close>Đóng</button></div>
+    <div id="settingserr" class="err"></div>
+  </form>
+</div>
+
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/composer.js"></script>
+<script src="/assets/js/accounts.js"></script>
+<script src="/assets/js/jobs.js"></script>
+<script src="/assets/js/jobstable.js"></script>
+<script src="/assets/js/assets.js"></script>
+<script src="/assets/js/logs.js"></script>
+<script src="/assets/js/settings.js"></script>
+<script src="/assets/js/onboarding.js"></script>
+<script src="/assets/js/main.js"></script>
+
+  <!-- MODAL POP-UP THÔNG BÁO TỪ ADMIN (BROADCAST OVERLAY) -->
+  <div id="broadcast-modal" class="overlay" style="z-index: 99999; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px);" hidden>
+    <div class="box" style="max-width: 480px; width: 100%; text-align: center; border: 1px solid rgba(56, 189, 248, 0.4); box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95), 0 0 50px rgba(56, 189, 248, 0.25); border-radius: 20px; padding: 28px 24px; background: #0b1120;">
+      <div id="bc-badge" style="width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 32px; background: rgba(56, 189, 248, 0.15); border: 2px solid #38bdf8;">
+        📢
+      </div>
+      <h3 id="bc-title" style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 12px; letter-spacing: -0.5px;">THÔNG BÁO TỪ ADMIN</h3>
+      <div id="bc-msg" style="font-size: 14.5px; line-height: 1.6; color: #e2e8f0; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; margin-bottom: 22px; text-align: left; max-height: 240px; overflow-y: auto; white-space: pre-wrap;">
+        Nội dung thông báo
+      </div>
+      <button id="btn-close-broadcast" type="button" class="btn btn-primary" style="width: 100%; padding: 13px; font-weight: 700; font-size: 15px; border-radius: 10px; background: linear-gradient(135deg, #0284c7, #38bdf8); color: #000; border: none; cursor: pointer; box-shadow: 0 4px 18px rgba(56, 189, 248, 0.4);">
+        ✅ ĐÃ HIỂU VÀ ĐÓNG
+      </button>
+    </div>
+  </div>
+
+</body></html>
