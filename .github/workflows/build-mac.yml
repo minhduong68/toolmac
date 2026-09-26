@@ -1,0 +1,72 @@
+name: Build Tool Mac (.DMG & .ZIP)
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install macOS Binaries (FFmpeg & Tor)
+        run: |
+          echo "=== Cài đặt FFmpeg & Tor để nhúng vào App ==="
+          brew install ffmpeg tor
+          
+          mkdir -p resources/bin/tor
+          
+          # Copy FFmpeg và Tor vào resources/bin
+          FFMPEG_PATH=$(which ffmpeg)
+          TOR_PATH=$(which tor)
+          
+          echo "FFmpeg tìm thấy tại: $FFMPEG_PATH"
+          echo "Tor tìm thấy tại: $TOR_PATH"
+          
+          cp "$FFMPEG_PATH" resources/bin/ffmpeg
+          cp "$TOR_PATH" resources/bin/tor/tor
+          
+          chmod +x resources/bin/ffmpeg
+          chmod +x resources/bin/tor/tor
+          
+          ls -lh resources/bin/
+          ls -lh resources/bin/tor/
+
+      - name: Install Node Dependencies
+        run: |
+          npm install
+
+      - name: Install Playwright Chromium
+        run: |
+          npx playwright install chromium
+
+      - name: Build macOS DMG & ZIP (Apple Silicon arm64)
+        run: |
+          npm run build:mac-arm64
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+
+      - name: List Generated Packages
+        run: |
+          echo "=== Danh sách file cài đặt đã đóng gói ==="
+          ls -la dist_package/
+
+      - name: Upload macOS Installers (.dmg & .zip)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ALEX-BRIGHT-TOOL-macOS-Build
+          path: |
+            dist_package/*.dmg
+            dist_package/*.zip
+          retention-days: 30

@@ -1,0 +1,86 @@
+{
+  "name": "alex-bright-tool",
+  "productName": "ALEX BRIGHT TOOL",
+  "version": "2.6.8",
+  "description": "ALEX BRIGHT TOOL - Tool Seedance Pro (Bản Quyền Kích Hoạt Theo Máy macOS & Windows)",
+  "author": {
+    "name": "ALEX BRIGHT TOOL",
+    "email": "support@anony88888",
+    "telegram": "@anony88888"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "dist/main.js",
+  "homepage": "https://t.me/anony88888",
+  "scripts": {
+    "start": "electron .",
+    "build:mac": "electron-builder --mac",
+    "build:mac-arm64": "electron-builder --mac --arm64",
+    "build:mac-all": "electron-builder --mac --arm64 --x64",
+    "pack": "electron-builder --dir"
+  },
+  "dependencies": {
+    "node-machine-id": "^1.1.12",
+    "playwright": "1.62.0"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.alexbright.seedance",
+    "productName": "ALEX BRIGHT TOOL",
+    "copyright": "Copyright © 2026 ALEX BRIGHT TOOL",
+    "directories": {
+      "output": "dist_package"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/bin",
+        "to": "bin",
+        "filter": ["**/*"]
+      }
+    ],
+    "mac": {
+      "identity": null,
+      "icon": "resources/icon.png",
+      "category": "public.app-category.video",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["arm64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["arm64"]
+        }
+      ],
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false
+    },
+    "dmg": {
+      "title": "ALEX BRIGHT TOOL - AI Studio",
+      "contents": [
+        {
+          "x": 130,
+          "y": 200
+        },
+        {
+          "x": 410,
+          "y": 200,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "window": {
+        "width": 540,
+        "height": 380
+      }
+    }
+  },
+  "trialBuild": false
+}

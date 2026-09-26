@@ -1,0 +1,55 @@
+================================================================================
+          ALEX BRIGHT TOOL — HƯỚNG DẪN DÀNH CHO NGƯỜI DÙNG MACBOOK
+================================================================================
+
+Chào bạn! Thư mục này đã được tinh chỉnh và chuyển hóa toàn bộ mã nguồn
+để tương thích 100% với hệ điều hành macOS (Cả chip Apple Silicon M1/M2/M3/M4 và Intel).
+
+--------------------------------------------------------------------------------
+1. NẾU BẠN MUỐN CHẠY THỬ NGHIỆM TRỰC TIẾP TRÊN MAC:
+--------------------------------------------------------------------------------
+- Copy toàn bộ thư mục "Tool_MacBook" này sang máy Mac.
+- Nhấp đúp vào file:
+  👉 [Chay_Tool_Mac.command]
+- Script sẽ tự động kiểm tra, cài đặt thư viện cần thiết và khởi động Tool lên màn hình.
+
+--------------------------------------------------------------------------------
+2. NẾU BẠN MUỐN TẠO FILE ".DMG" CHUẨN ĐỂ GỬI CHO KHÁCH HÀNG "MÙ CÔNG NGHỆ":
+--------------------------------------------------------------------------------
+Khách hàng không rành công nghệ chỉ thích tải 1 file ".dmg" về, kéo vào thư mục
+Applications là mở dùng ngay. Bạn có thể tạo file ".dmg" này theo 2 cách:
+
+A. NẾU BẠN CÓ 1 CHIẾC MÁY MAC:
+   - Copy thư mục "Tool_MacBook" này sang máy Mac.
+   - Nhấp đúp vào file:
+     👉 [Dong_Goi_File_Cai_Dat_DMG.command]
+   - Máy sẽ tự động đóng gói và tạo ra file cài đặt ".dmg" nằm trong thư mục "dist_package/".
+   - Bạn chỉ cần gửi file ".dmg" này cho khách hàng!
+
+B. NẾU BẠN CHỈ CÓ MÁY WINDOWS NÀY (KHÔNG CÓ MÁY MAC):
+   - Đưa thư mục "Tool_MacBook" lên 1 kho lưu trữ GitHub (chọn Private).
+   - Vào tab "Actions" trên GitHub -> Chọn workflow "Build macOS DMG" -> Bấm "Run workflow".
+   - Máy chủ Mac của GitHub sẽ tự động build và trả về file ".dmg" sẵn sàng tải về!
+
+--------------------------------------------------------------------------------
+3. HƯỚNG DẪN KHÁCH HÀNG MỞ APP TRÊN MAC (TRÁNH LỖI "ỨNG DỤNG BỊ HỎNG"):
+--------------------------------------------------------------------------------
+Do app tự phát triển (chưa mua chứng chỉ Apple Developer 99$/năm), hệ thống
+bảo mật Apple Gatekeeper sẽ hiện thông báo cảnh báo ở lần mở đầu tiên.
+
+👉 CÁCH HƯỚNG DẪN KHÁCH HÀNG RẤT ĐƠN GIẢN (CHỌN 1 TRONG 2 CÁCH):
+* Cách 1 (Nhanh nhất - Không cần gõ lệnh):
+  - Khách kéo App vào thư mục Applications.
+  - Giữ phím [Control] trên bàn phím + Bấm chuột phải vào biểu tượng App -> Chọn "Mở" (Open).
+  - Một hộp thoại hiện ra -> Bấm nút "Mở" (Open) một lần nữa là xong. Từ lần sau chỉ cần nhấp đúp là mở ngay!
+
+* Cách 2:
+  - Khách nhấp đúp vào file [Mo_Khoa_Bao_Mat_Mac.command] đính kèm là máy sẽ tự động gỡ bỏ cách ly của Apple 100%.
+
+--------------------------------------------------------------------------------
+4. KÍCH HOẠT BẢN QUYỀN MÁY MAC:
+--------------------------------------------------------------------------------
+- Khi mở Tool, màn hình chờ kích hoạt sẽ hiển thị Mã Máy (HWID) phần cứng của MacBook.
+- Khách bấm: 👉 [📋 Sao Chép Mã Máy]
+- Admin duyệt trên Web Admin y hệt như bản Windows. Tool sẽ tự động nhận diện và mở khóa ngay lập tức!
+================================================================================
